@@ -1,5 +1,5 @@
 import {
-  getPhotographers,
+  getAllPhotographers,
   initDataManager,
 } from "../dataManager.js";
 import PhotographerFactory from "../factories/photographerFactory.js";
@@ -12,10 +12,10 @@ export default async function injectDOM(domTarget) {
 }
 
 function displayPhotographersCard() {
-  const photographers = getPhotographers();
+  const photographers = getAllPhotographers();
   photographers.forEach(photographer => {
     const photographerModel = new PhotographerFactory(photographer);
-    DOM.appendChild(photographerModel.createCard()); //TODO Optimiser l'affichage des images
+    DOM.innerHTML += photographerModel.getCard();
   });
 }
 

@@ -15,14 +15,33 @@ export default class PhotographerFactory {
    *
    * @return   Retourne la carte du photographe
    */
-  createCard() {
-    const article = document.createElement( "article" );
-    const img = document.createElement( "img" );
-    img.setAttribute("src", this.picture);
-    const h2 = document.createElement( "h2" );
-    h2.textContent = this.name;
-    article.appendChild(img);
-    article.appendChild(h2);
-    return (article);
+  getCard() {
+    return this.cardTemplate();
+  }
+
+  cardTemplate() {
+    return /*html*/`
+      <article>
+        <a href="./photographer.html?id=${this.id}">
+          <img src="${this.picture}">
+          <h2>${this.name}</h2>
+        </a>
+        <p class="descriptionFieldArea">
+          <span class="locationField">
+            ${this.city}, ${this.country}
+          </span>
+          <span class="TagLineField">
+            ${this.tagline}
+          </span>
+          <span class="priceField">
+            ${this.price}€/jour
+          </span>
+        </p>
+      </article>
+    `;
+  }
+
+  getMedias() {
+    
   }
 }

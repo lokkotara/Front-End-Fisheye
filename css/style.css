@@ -1,5 +1,12 @@
 @import url("photographer.css");
 
+:root {
+    --primary-color: #901C1C;
+    --secondary-color: #D3573C;
+    --lighter-color: #FAFAFA; 
+    --darker-color: #525252;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -15,8 +22,12 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--primary-color);
     margin-right: 100px;
+}
+
+p, h2 {
+    margin: 0;
 }
 
 .logo {
@@ -32,19 +43,63 @@ h1 {
 }
 
 .photographer_section article {
-    justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
+.photographer_section article a {
+    justify-self: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+}
+
 .photographer_section article h2 {
-    color: #D3573C;
+    color: var(--secondary-color);
     font-size: 36px;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.photographer_section article .descriptionFieldArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photographer_section article .locationField {
+    color: var(--primary-color);
+    font-size: 13px;
+}
+
+.photographer_section article .tagLineField {
+    font-size: 10px;
+}
+
+.photographer_section article .priceField {
+    color: var(--darker-color);
+    font-size: 9px;
+}
+
+.photographer_header {
+    display: flex;    
+}
+
+.photographer_header img {
+    border-radius: 50%;
+}
+
+.image {
+    display: inline-flex;
+    flex-direction: column;
 }
