@@ -63,7 +63,7 @@ p, h2 {
     font-size: 36px;
 }
 
-.photographer_section article img {
+.photographer_section article img, .photographer_header img {
     height: 200px;
     width: 200px;
     object-fit: cover;
@@ -93,10 +93,6 @@ p, h2 {
 
 .photographer_header {
     display: flex;    
-}
-
-.photographer_header img {
-    border-radius: 50%;
 }
 
 .image {
