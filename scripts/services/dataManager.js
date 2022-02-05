@@ -17,14 +17,14 @@ async function initDataManager() {
   }
 }
 
-function getAllPhotographers() {
+async function getAllPhotographers() {
+  if (photographers === null) await initDataManager();
   return photographers;
 }
 
 function getPhotographer(id) {
   for (const photographer of photographers) {
     if (photographer["id"] === id) {
-      console.log(photographer);
       return photographer;
     }
   }

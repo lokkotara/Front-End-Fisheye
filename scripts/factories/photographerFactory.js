@@ -21,11 +21,9 @@ export default class PhotographerFactory {
 
   cardTemplate() {
     return /*html*/`
-      <article>
-        <a href="./photographer.html?id=${this.id}">
+      <article onclick="changePage(['photographer', ${this.id}])">
           <img src="${this.picture}">
           <h2>${this.name}</h2>
-        </a>
         <p class="descriptionFieldArea">
           <span class="locationField">
             ${this.city}, ${this.country}
@@ -42,6 +40,6 @@ export default class PhotographerFactory {
   }
 
   getMedias() {
-    
+    console.log("getMedias");
   }
 }

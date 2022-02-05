@@ -1,11 +1,12 @@
-#contact_modal {
-    display: none;
-}
-
-.photograph-header {
+/* TODO styliser la partie gauche du heading */
+.photographer_header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    padding: 2rem;
 }
 
 .contact_button {
@@ -20,7 +21,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
+/* TODO mettre en forme la modale */
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -73,4 +74,8 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.hidden {
+    display: none;
 }
