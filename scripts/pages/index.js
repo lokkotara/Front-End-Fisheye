@@ -13,7 +13,7 @@ export default async function pageIndex() {
 }
 
 function createContainer() {
-  const main = document.querySelector("#main");
+  const main = document.querySelector("#mainContainer");
   main.innerHTML = "";
   const container = document.createElement("div");
   container.classList = "photographer_section";
