@@ -1,3 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
 @import url('./elements/index.css');
 @import url('./elements/photographer.css');
+
+:root {
+  --primary-color: #901C1C;
+  --secondary-color: #D3573C;
+  --secondary-color-alt: #DB8876;
+  --lighter-color: #FAFAFA; 
+  --darker-color: #525252;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+}
+
+#headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+p, h2 {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+.heartIcon {
+  width: 1.1rem;
+}

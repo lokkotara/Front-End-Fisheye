@@ -1,36 +1,12 @@
-:root {
-    --primary-color: #901C1C;
-    --secondary-color: #D3573C;
-    --lighter-color: #FAFAFA; 
-    --darker-color: #525252;
-}
-
-body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
-}
-
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-}
-
-h1 {
+#headerContainer h1 {
     color: var(--primary-color);
     margin-right: 100px;
-}
-
-p, h2 {
-    margin: 0;
 }
 
 .logo {
     height: 50px;
     margin-left: 100px;
+    cursor: pointer;
 }
 
 .photographer_section {
@@ -45,6 +21,10 @@ p, h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    align-self: center;
+    width: fit-content;
+    margin: 0 auto;
+    cursor: pointer;
 }
 
 .photographer_section article a {
