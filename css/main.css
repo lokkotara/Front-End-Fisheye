@@ -32,4 +32,6 @@ p, h2 {
 }
 .heartIcon {
   width: 1.1rem;
+  cursor: pointer;
+  fill: #901C1C;
 }

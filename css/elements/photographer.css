@@ -147,3 +147,6 @@ form input {
 .mediasGallery figcaption .mediaNumber {
     margin-right: 0.5rem;
 }
+.iconFull {
+    font-weight: 900;
+}

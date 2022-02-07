@@ -19,11 +19,13 @@ let medias = [];
 const mediasObject = [];
 
 export default async function injectPage(array) {
+  console.log("je me lance");
   createContainer();
   id = parseInt(array[1]);
   await initDataManager();
   medias = getMedias(id);
-  return displayPhotographersTemplate(id);
+  const DOMTarget = document.querySelector(".heading_section");
+  DOMTarget.innerHTML = displayPhotographersTemplate(id);
 }
 
 function createContainer() {
@@ -99,12 +101,15 @@ function manageLike(id) {
   mediasObject.forEach(media => {
     if (media.id === id) {
       media.toggleLike();
-      modifyLike(media.id, media.renderLike());
+      modifyLike(media.id, media.likes);
     }
   });
 }
-
+// FIXME : Problème d'affichage du coeur une fois sur deux lorsque je retourne à l'accueil et que je reviens (valable pour un photographe). Lorsque je log l'icone, il appelle la function une fois de plus à chaque retour
 function modifyLike(id, media) {
-  const counterContainer = document.querySelector(`#counter${id}`);
+  const counterContainer = document.querySelector(`#counter_${id}`);
+  const icon = counterContainer.nextElementSibling;
+  console.log(icon);
+  icon.classList.toggle("iconFull");
   counterContainer.innerText = media;
 }
