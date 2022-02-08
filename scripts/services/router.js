@@ -24,21 +24,32 @@ function definePage() {
  * @return {void} injecte la page dans le DOM
  */
 async function changePage(url){
+  console.log(url);
   let DOMTarget;
+  let nextURL;
+  const nextTitle = "";
+  const nextState = null;
   const header = document.querySelector("#headerContainer");
   const pathname = window.location.pathname;
-  if (url[0] === "") url[0] = "index";
   switch (url[0]) {
+    case "":
+      header.innerHTML = render("index");
+      page = await pages["index"](url);
+      DOMTarget = document.querySelector(".photographer_section");
+      DOMTarget.innerHTML = page;
+      nextURL = pathname + "index.html";
+      break;
     case "index":
       header.innerHTML = render("index");
       page = await pages[url[0]](url);
       DOMTarget = document.querySelector(".photographer_section");
       DOMTarget.innerHTML = page;
+      nextURL = pathname ;
       break;
     case "photographer":
       header.innerHTML = render("photographer");
       page = pages[url[0]](url);
-      window.location.replace(pathname + `?${url[0]}/${url[1]}`);
+      nextURL = pathname + `?${url[0]}/${url[1]}`;
       // DOMTarget = document.querySelector(".heading_section");
       // DOMTarget.innerHTML = page;
       break;
@@ -48,8 +59,9 @@ async function changePage(url){
       DOMTarget.innerHTML = page;
       break;
   }
+  window.history.pushState(nextState, nextTitle,  nextURL);
+  window.history.replaceState(nextState, nextTitle,  nextURL);
 }
-
 export {
   changePage,
   definePage

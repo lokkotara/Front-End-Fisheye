@@ -3,10 +3,8 @@ import {MediaPicture, MediaVideo} from "../factories/MediaFactory.js";
 import {
   getMedias,
   getPhotographer,
-  initDataManager,
 } from "../services/dataManager.js";
 
-import PhotographerFactory from "../factories/photographerFactory.js";
 import {exposeElement} from "../utils/tools.js";
 import toggleModal from "../utils/contactForm.js";
 
@@ -19,13 +17,12 @@ let medias = [];
 const mediasObject = [];
 
 export default async function injectPage(array) {
-  console.log("je me lance");
   createContainer();
   id = parseInt(array[1]);
-  await initDataManager();
-  medias = getMedias(id);
+  photographer = await getPhotographer(id);
+  medias = await getMedias(id);
   const DOMTarget = document.querySelector(".heading_section");
-  DOMTarget.innerHTML = displayPhotographersTemplate(id);
+  DOMTarget.innerHTML = displayPhotographersTemplate(photographer);
 }
 
 function createContainer() {
@@ -36,9 +33,7 @@ function createContainer() {
   main.appendChild(container);
 }
 
-// eslint-disable-next-line max-lines-per-function
-function displayPhotographersTemplate(id) {
-  photographer = new PhotographerFactory(getPhotographer(id));
+function displayPhotographersTemplate(photographer) {
   return /*html*/`
     <div class="photographer_header">
       <div class="col">

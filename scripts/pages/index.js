@@ -1,13 +1,12 @@
-import PhotographerFactory from "../factories/photographerFactory.js";
 import { getAllPhotographers } from "../services/dataManager.js";
 
 export default async function pageIndex() {
   createContainer();
   let html = "";
   const photographers = await getAllPhotographers();
+  console.log(photographers);
   photographers.forEach((photographer) => {
-    const photographerModel = new PhotographerFactory(photographer);
-    html += photographerModel.getCard();
+    html += photographer.getCard();
   });
   return html;
 }

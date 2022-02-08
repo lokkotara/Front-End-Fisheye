@@ -12,7 +12,7 @@ function templateNavbarIndex() {
 
 function templateNavbarPhotographer() {
   return /*html*/`
-  <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" onclick="changePage([''])"/>
+  <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" onclick="changePage(['index'])"/>
   
   `;
 }
