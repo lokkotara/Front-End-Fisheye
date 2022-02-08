@@ -2,7 +2,7 @@ import PhotographerFactory from "../factories/photographerFactory.js";
 
 let src;
 let photographers = null;
-let photographerModelArray;
+let photographerArray = [];
 let media = null;
 
 function setDataManagerSource(source) {
@@ -21,9 +21,7 @@ async function initDataManager() {
 }
 
 async function getAllPhotographers() {
-  const photographerArray = [];
   if (photographers === null) await initDataManager();
-  console.log(photographers);
   photographers.forEach((photographer) => {
     const photographerModel = new PhotographerFactory(photographer);
     photographerArray.push(photographerModel);
@@ -32,10 +30,9 @@ async function getAllPhotographers() {
 }
 
 async function getPhotographer(id) {
-  const photographerArray = await getAllPhotographers();
+  if (photographerArray.length < 1) await getAllPhotographers();
   for (const photographer of photographerArray) {
     if (photographer["id"] === id) {
-      console.log(photographer);
       return photographer;
     }
   }

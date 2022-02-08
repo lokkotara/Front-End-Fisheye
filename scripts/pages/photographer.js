@@ -14,7 +14,7 @@ exposeElement("manageLike", manageLike.bind(this));
 let id;
 let photographer;
 let medias = [];
-const mediasObject = [];
+let mediasObject = [];
 
 export default async function injectPage(array) {
   createContainer();
@@ -78,15 +78,16 @@ function displayPhotographersTemplate(photographer) {
 
 function displayMedias() {
   let html = "";
+  mediasObject = [];
   medias.forEach(media => {
-    if (media["image"] !== undefined) {
-      const model = new MediaPicture(media);
-      mediasObject.push(model);
-      html += model.render();
-    } else {
-      const model = new MediaVideo(media);
-      mediasObject.push(model);
-      html += model.render();
+  if (media["image"] !== undefined) {
+    const model = new MediaPicture(media);
+    mediasObject.push(model);
+    html += model.render();
+  } else {
+    const model = new MediaVideo(media);
+    mediasObject.push(model);
+    html += model.render();
     }
   });
   return html;
