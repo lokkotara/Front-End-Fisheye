@@ -22,6 +22,7 @@ async function initDataManager() {
 
 async function getAllPhotographers() {
   if (photographers === null) await initDataManager();
+  photographerArray = [];
   photographers.forEach((photographer) => {
     const photographerModel = new PhotographerFactory(photographer);
     photographerArray.push(photographerModel);

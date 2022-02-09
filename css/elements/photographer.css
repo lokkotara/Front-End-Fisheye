@@ -150,3 +150,41 @@ form input {
 .iconFull {
     font-weight: 900;
 }
+
+.filterContainer {
+    display: flex;
+    margin: 1rem 100px;
+}
+.filter {
+    padding: 0 0.5rem;
+    display: flex;
+    position: relative;
+    min-width: 6.6rem;
+}
+.filter ul {
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    position: absolute;
+    padding: 0 0.5rem;
+    text-decoration: none;
+    z-index: 10;
+}
+.filter li {
+    list-style-type: none;
+    padding: 0.5rem 0;
+    padding-right: 1.5rem;
+    color: white;
+}
+.filter li:not(:last-child) {
+    border-bottom: 1px solid white;
+}
+.filter>.filterChevron {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.5rem;
+    color: white;
+    z-index: 11;
+}

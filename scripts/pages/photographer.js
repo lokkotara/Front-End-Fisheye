@@ -5,14 +5,18 @@ import {
   getPhotographer,
 } from "../services/dataManager.js";
 
+import Filter from "../components/Filter.js";
 import {exposeElement} from "../utils/tools.js";
 import toggleModal from "../utils/contactForm.js";
 
 exposeElement("toggleModal", toggleModal.bind(this));
+exposeElement("toggleFilter", toggleFilter.bind(this));
 exposeElement("manageLike", manageLike.bind(this));
+exposeElement("sortBy", sortBy.bind(this));
 
 let id;
 let photographer;
+let filter;
 let medias = [];
 let mediasObject = [];
 
@@ -22,6 +26,7 @@ export default async function injectPage(array) {
   photographer = await getPhotographer(id);
   medias = await getMedias(id);
   const DOMTarget = document.querySelector(".heading_section");
+  filter = initFilter(medias);
   DOMTarget.innerHTML = displayPhotographersTemplate(photographer);
 }
 
@@ -48,6 +53,7 @@ function displayPhotographersTemplate(photographer) {
         <img src="${photographer.picture}">
       </div>
     </div>
+    <div class="filterArea">${filter.render()}</div>
     <div class="mediasGallery">${displayMedias()}</div>
     <div class="contact_modal hidden">
 			<div class="modal">
@@ -80,14 +86,14 @@ function displayMedias() {
   let html = "";
   mediasObject = [];
   medias.forEach(media => {
-  if (media["image"] !== undefined) {
-    const model = new MediaPicture(media);
-    mediasObject.push(model);
-    html += model.render();
-  } else {
-    const model = new MediaVideo(media);
-    mediasObject.push(model);
-    html += model.render();
+    if (media["image"] !== undefined) {
+      const model = new MediaPicture(media);
+      mediasObject.push(model);
+      html += model.render();
+    } else {
+      const model = new MediaVideo(media);
+      mediasObject.push(model);
+      html += model.render();
     }
   });
   return html;
@@ -108,4 +114,31 @@ function modifyLike(id, media) {
   console.log(icon);
   icon.classList.toggle("iconFull");
   counterContainer.innerText = media;
+}
+
+function initFilter(medias) {
+  return new Filter(medias);
+}
+function toggleFilter() {
+  const filterArea = document.querySelector(".filterArea");
+  filter.toggle();
+  filterArea.innerHTML = filter.render();
+}
+function sortBy(type) {
+  switch (type) {
+    case "Popularity":
+      filter.sortByPopularity(medias);
+      break;
+    case "Date":
+      filter.sortByDate(medias);
+      break;
+
+    case "Title":
+      filter.sortByTitle(medias);
+      break;
+
+    default:
+      console.error("Houston, on a un problème");
+      break;
+  }
 }
