@@ -82,9 +82,11 @@ function displayPhotographersTemplate(photographer) {
   `;
 }
 
-function displayMedias() {
+function displayMedias(data) {
+  console.log(filter.sortFilterBy("Popularité"));
   let html = "";
   mediasObject = [];
+  if (data) medias = data;
   medias.forEach(media => {
     if (media["image"] !== undefined) {
       const model = new MediaPicture(media);
@@ -107,7 +109,6 @@ function manageLike(id) {
     }
   });
 }
-// FIXME : Problème d'affichage du coeur une fois sur deux lorsque je retourne à l'accueil et que je reviens (valable pour un photographe). Lorsque je log l'icone, il appelle la function une fois de plus à chaque retour
 function modifyLike(id, media) {
   const counterContainer = document.querySelector(`#counter_${id}`);
   const icon = counterContainer.nextElementSibling;
@@ -124,21 +125,20 @@ function toggleFilter() {
   filter.toggle();
   filterArea.innerHTML = filter.render();
 }
+function updateFilter(html) {
+  const filterArea = document.querySelector(".filterArea");
+  filterArea.innerHTML = html;
+}
+
 function sortBy(type) {
-  switch (type) {
-    case "Popularity":
-      filter.sortByPopularity(medias);
-      break;
-    case "Date":
-      filter.sortByDate(medias);
-      break;
+  const newObjectArray = filter.sortFilterBy(type);
+  const HTML = displayMedias(newObjectArray);
+  updateMediasGallery(HTML);
+  const newContent = filter.updateFilterOrder(type);
+  updateFilter(newContent);
+}
 
-    case "Title":
-      filter.sortByTitle(medias);
-      break;
-
-    default:
-      console.error("Houston, on a un problème");
-      break;
-  }
+function updateMediasGallery(html) {
+  const mediasGallery = document.querySelector(".mediasGallery");
+  mediasGallery.innerHTML = html;
 }

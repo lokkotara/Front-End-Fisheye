@@ -2,7 +2,7 @@
 .photographer_header {
     background-color: var(--lighter-color);
     height: 200px;
-    margin: 0 100px;
+    margin: 0 80px;
     display: flex;
     justify-content: space-between;    
     align-items: center;
@@ -125,7 +125,7 @@ form input {
 .mediasGallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    gap: 20px;
 }
 .mediasGallery article {
     justify-self: center;
@@ -153,7 +153,7 @@ form input {
 
 .filterContainer {
     display: flex;
-    margin: 1rem 100px;
+    margin: 1rem 80px 3.5rem;
 }
 .filter {
     padding: 0 0.5rem;
@@ -187,4 +187,12 @@ form input {
     right: 0.5rem;
     color: white;
     z-index: 11;
+    cursor: pointer;
+}
+.filter .filterListContainer {
+    cursor: pointer;
+}
+.filter .filterListContainer li:hover {
+    /* filter: brightness(85%); */
+    background-color: #7a1818;
 }

@@ -1,11 +1,11 @@
 #headerContainer h1 {
     color: var(--primary-color);
-    margin-right: 100px;
+    margin: 0 100px 0 0;
 }
 
 .logo {
     height: 50px;
-    margin-left: 100px;
+    margin-left: 80px;
     cursor: pointer;
 }
 
