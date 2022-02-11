@@ -44,11 +44,24 @@ async function getMedias(id) {
   const array = media.filter(media => media["photographerId"] === id);
   return array;
 }
+function getUpdateLikes(array) {
+  let sum = null;
+  array.forEach(media => sum += media["likes"]);
+  return sum;
+}
+async function getTotalLikes(id) {
+  const array = await getMedias(id);
+  let sum = null;
+  array.forEach(media => sum += media["likes"]);
+  return sum;
+}
 
 export {
   getAllPhotographers,
   getMedias,
   getPhotographer,
+  getTotalLikes,
+  getUpdateLikes,
   setDataManagerSource,
   initDataManager,
 };

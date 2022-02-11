@@ -4,7 +4,6 @@ export default async function pageIndex() {
   createContainer();
   let html = "";
   const photographers = await getAllPhotographers();
-  console.log(photographers);
   photographers.forEach((photographer) => {
     html += photographer.getCard();
   });

@@ -22,7 +22,7 @@ export default class PhotographerFactory {
   cardTemplate() {
     return /*html*/`
       <article onclick="changePage(['photographer', ${this.id}])">
-          <img src="${this.picture}">
+          <img src="${this.picture}" alt="">
           <h2>${this.name}</h2>
         <p class="descriptionFieldArea">
           <span class="locationField">
@@ -39,7 +39,4 @@ export default class PhotographerFactory {
     `;
   }
 
-  getMedias() {
-    console.log("getMedias");
-  }
 }

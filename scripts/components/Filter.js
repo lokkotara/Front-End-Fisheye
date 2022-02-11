@@ -56,10 +56,7 @@ export default class Filter {
 
   sortFilterBy(type) {
     const data = this.medias.slice();
-    if (!type) {
-      this.sortedData = data;
-      return;
-    }
+    if (!type) type = "Popularité";
     this.sortedData = data.sort((a, b) => {
       switch (type) {
         case "Popularité":

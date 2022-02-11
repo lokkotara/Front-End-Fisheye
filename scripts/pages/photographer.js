@@ -3,6 +3,8 @@ import {MediaPicture, MediaVideo} from "../factories/MediaFactory.js";
 import {
   getMedias,
   getPhotographer,
+  getTotalLikes,
+  getUpdateLikes,
 } from "../services/dataManager.js";
 
 import Filter from "../components/Filter.js";
@@ -17,28 +19,30 @@ exposeElement("sortBy", sortBy.bind(this));
 let id;
 let photographer;
 let filter;
-let medias = [];
-let mediasObject = [];
+let totalLikes    = null;
+let medias        = [];
+let mediasObject  = [];
 
 export default async function injectPage(array) {
   createContainer();
-  id = parseInt(array[1]);
-  photographer = await getPhotographer(id);
-  medias = await getMedias(id);
-  const DOMTarget = document.querySelector(".heading_section");
-  filter = initFilter(medias);
-  DOMTarget.innerHTML = displayPhotographersTemplate(photographer);
+  id                    = parseInt(array[1]);
+  photographer          = await getPhotographer(id);
+  medias                = await getMedias(id);
+  totalLikes            = await getTotalLikes(photographer.id);
+  const DOMTarget       = document.querySelector(".heading_section");
+  filter                = initFilter(medias);
+  DOMTarget.innerHTML   = templatePhotographerHTML(photographer);
 }
 
 function createContainer() {
-  const main = document.querySelector("#mainContainer");
-  main.innerHTML = "";
-  const container = document.createElement("div");
-  container.classList = "heading_section";
+  const main            = document.querySelector("#mainContainer");
+  const container       = document.createElement("div");
+  main.innerHTML        = "";
+  container.classList   = "heading_section";
   main.appendChild(container);
 }
 
-function displayPhotographersTemplate(photographer) {
+function templatePhotographerHTML(photographer) {
   return /*html*/`
     <div class="photographer_header">
       <div class="col">
@@ -55,35 +59,50 @@ function displayPhotographersTemplate(photographer) {
     </div>
     <div class="filterArea">${filter.render()}</div>
     <div class="mediasGallery">${displayMedias()}</div>
-    <div class="contact_modal hidden">
-			<div class="modal">
-				<header>
-        <div class="modalTitleContainer">
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="toggleModal()" />
-        </div>
-          <p class="modalTitleName">${photographer.name}</p>
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input type="search"/>
-						<label>Nom</label>
-						<input type="search"/>
-						<label>Email</label>
-						<input type="email"/>
-						<label>Votre message</label>
-						<input type="text-area"/>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
+    <div class="infoContainer">${templateInfosPhotographer()}</div>
+    <div class="contact_modal hidden">${templateModal()}</div>
 		</div>
   `;
 }
 
+function templateModal() {
+  return /*html*/`
+    <div class="modal">
+      <header>
+      <div class="modalTitleContainer">
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" onclick="toggleModal()" />
+      </div>
+        <p class="modalTitleName">${photographer.name}</p>
+      </header>
+      <form>
+        <div>
+          <label>Prénom</label>
+          <input type="search"/>
+          <label>Nom</label>
+          <input type="search"/>
+          <label>Email</label>
+          <input type="email"/>
+          <label>Votre message</label>
+          <input type="text-area"/>
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+  `;
+}
+
+function templateInfosPhotographer() {
+  return /*html*/`
+    <span class="likesInfoContainer">
+      <span class="likesInfo">${totalLikes}</span>
+      <span class="fa fa-heart" aria-hidden="true"></span>
+    </span>
+    <span class="priceInfoContainer">${photographer.price}€/jour</span>
+  `;
+}
+
 function displayMedias(data) {
-  console.log(filter.sortFilterBy("Popularité"));
+  medias = filter.sortFilterBy();
   let html = "";
   mediasObject = [];
   if (data) medias = data;
@@ -106,13 +125,14 @@ function manageLike(id) {
     if (media.id === id) {
       media.toggleLike();
       modifyLike(media.id, media.likes);
+      const likes = getUpdateLikes(mediasObject);
+      displayNewTotalLikes(likes);
     }
   });
 }
 function modifyLike(id, media) {
   const counterContainer = document.querySelector(`#counter_${id}`);
   const icon = counterContainer.nextElementSibling;
-  console.log(icon);
   icon.classList.toggle("iconFull");
   counterContainer.innerText = media;
 }
@@ -141,4 +161,9 @@ function sortBy(type) {
 function updateMediasGallery(html) {
   const mediasGallery = document.querySelector(".mediasGallery");
   mediasGallery.innerHTML = html;
+}
+
+function displayNewTotalLikes(value) {
+  const likesInfo = document.querySelector(".likesInfo");
+  likesInfo.innerHTML = value;
 }
