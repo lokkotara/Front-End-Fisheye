@@ -1,4 +1,5 @@
 import {exposeElement} from "../utils/tools.js";
+import {getNameById} from "./dataManager.js";
 import index from "../pages/index.js";
 import photographer from "../pages/photographer.js";
 import render from "../components/navbar.js";
@@ -25,10 +26,11 @@ function definePage() {
 async function changePage(url){
   let DOMTarget;
   let nextURL;
-  const nextTitle = "";
+  let nextTitle = "";
   const nextState = null;
   const header = document.querySelector("#headerContainer");
   const pathname = window.location.pathname;
+  
   if (url[0]==="") url[0] = "index";
   switch (url[0]) {
     case "index":
@@ -37,13 +39,16 @@ async function changePage(url){
       DOMTarget = document.querySelector(".photographer_section");
       DOMTarget.innerHTML = page;
       nextURL = pathname ;
+      nextTitle = "Fisheye | La référence des photographes";
+      document.title = "Fisheye | La référence des photographes";
       break;
     case "photographer":
+      const photographerName = await getNameById(url[1]);
       header.innerHTML = render("photographer");
       page = pages[url[0]](url);
       nextURL = pathname + `?${url[0]}/${url[1]}`;
-      // DOMTarget = document.querySelector(".heading_section");
-      // DOMTarget.innerHTML = page;
+      nextTitle = `Fisheye | Coup d'oeil sur ${photographerName}`;
+      document.title = `Fisheye | Coup d'oeil sur ${photographerName}`;
       break;
     default:
       DOMTarget = document.querySelector(".heading_section");

@@ -148,6 +148,7 @@ function toggleFilter() {
 function updateFilter(html) {
   const filterArea = document.querySelector(".filterArea");
   filterArea.innerHTML = html;
+  toggleFilter();
 }
 
 function sortBy(type) {

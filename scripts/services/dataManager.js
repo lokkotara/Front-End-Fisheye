@@ -56,9 +56,22 @@ async function getTotalLikes(id) {
   return sum;
 }
 
+async function getNameById(id) {
+  let name;
+  photographers = await getAllPhotographers();
+  photographers.forEach((photographer) => {
+    if (photographer["id"] === id) {
+      console.log(photographer["name"]);
+      name = photographer["name"];
+    }
+  });
+  return name;
+}
+
 export {
   getAllPhotographers,
   getMedias,
+  getNameById,
   getPhotographer,
   getTotalLikes,
   getUpdateLikes,
