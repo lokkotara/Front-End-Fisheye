@@ -4,13 +4,12 @@ import index from "../pages/index.js";
 import photographer from "../pages/photographer.js";
 import render from "../components/navbar.js";
 
+let page;
 const pages = {
   index,
   photographer
 };
 
-let page;
-exposeElement("page", page); //TODO enlever après débug
 exposeElement("changePage", changePage.bind(this));
 
 function definePage() {
@@ -30,14 +29,11 @@ async function changePage(url){
   const nextState = null;
   const header = document.querySelector("#headerContainer");
   const pathname = window.location.pathname;
-  
   if (url[0]==="") url[0] = "index";
   switch (url[0]) {
     case "index":
       header.innerHTML = render("index");
-      page = await pages[url[0]](url);
-      DOMTarget = document.querySelector(".photographer_section");
-      DOMTarget.innerHTML = page;
+      page = pages[url[0]](url);
       nextURL = pathname ;
       nextTitle = "Fisheye | La référence des photographes";
       document.title = "Fisheye | La référence des photographes";

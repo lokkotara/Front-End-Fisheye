@@ -61,11 +61,16 @@ async function getNameById(id) {
   photographers = await getAllPhotographers();
   photographers.forEach((photographer) => {
     if (photographer["id"] === id) {
-      console.log(photographer["name"]);
       name = photographer["name"];
     }
   });
   return name;
+}
+
+function watchKeyNav() {
+  document.onkeyup = e => {
+    if (e.key === "Enter" && e.explicitOriginalTarget.localName !== "body") document.activeElement.onclick(e.target.onclick);
+  };
 }
 
 export {
@@ -77,4 +82,5 @@ export {
   getUpdateLikes,
   setDataManagerSource,
   initDataManager,
+  watchKeyNav,
 };

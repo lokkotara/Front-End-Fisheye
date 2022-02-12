@@ -32,16 +32,16 @@ export class MediaPicture extends MediaFactory {
   }
 
   mediaTemplate() {
-    return `
-    <article>
+    return /*html*/`
+    <article tabindex="0" class="mediaCard">
       <figure>
         <img src="./assets/images/${this.photographerId}/${this.image}" alt="${this.altText}" class="mediaImage">
         <figcaption>
-          <span>${this.title}</span>
-          <span class="mediaLikes">
-            <span class="mediaNumber" id="counter_${this.id}">${this.likes}</span>
-            <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})"></span>
-          </span>
+          <h2>${this.title}</h2>
+          <p class="mediaLikes">
+            <data class="mediaNumber" id="counter_${this.id}" value="${this.likes}">${this.likes}</data>
+            <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})" tabindex="0"></span>
+          </p>
         </figcaption>
       </figure>
     </article>
@@ -56,16 +56,16 @@ export class MediaVideo extends MediaFactory {
   }
 
   mediaTemplate() {
-    return `
-    <article>
+    return /*html*/`
+    <article tabindex="0" class="mediaCard">
       <figure>
         <video class="mediaVideo" src="./assets/images/${this.photographerId}/${this.video}"></video>
           <figcaption>
-            <span>${this.title}</span>
-            <span class="mediaLikes">
-              <span class="mediaNumber" id="counter_${this.id}">${this.likes}</span>
-              <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})"></span>
-            </span>
+            <h2>${this.title}</h2>
+            <p class="mediaLikes">
+              <data class="mediaNumber" id="counter_${this.id}" value="${this.likes}">${this.likes}</data>
+              <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})" tabindex="0"></span>
+            </p>
           </figcaption>
       </figure>
     </article>

@@ -26,9 +26,9 @@ export default class Filter {
         <p>Trier par</p>
         <div class="filter">
           <ul class="filterListContainer">
-            <li onclick="sortBy('${this.orderList[0]}')">${this.orderList[0]}</li>
-            <li onclick="sortBy('${this.orderList[1]}')">${this.orderList[1]}</li>
-            <li onclick="sortBy('${this.orderList[2]}')">${this.orderList[2]}</li>
+            <li tabindex="0" onclick="sortBy('${this.orderList[0]}')">${this.orderList[0]}</li>
+            <li tabindex="0" onclick="sortBy('${this.orderList[1]}')">${this.orderList[1]}</li>
+            <li tabindex="0" onclick="sortBy('${this.orderList[2]}')">${this.orderList[2]}</li>
           </ul>
           <i class="fa fa-chevron-up filterChevron" aria-hidden="true" onclick="toggleFilter()"></i>
         </div>
@@ -37,14 +37,14 @@ export default class Filter {
   }
 
   templateClosed() {
-    return `
+    return /*html*/`
       <div class="filterContainer">
         <p>Trier par</p>
         <div class="filter">
-          <ul>
+          <ul tabindex="0" onclick="toggleFilter()">
             <li>${this.orderList[0]}</li>
           </ul>
-          <i class="fa fa-chevron-down filterChevron" aria-hidden="true" onclick="toggleFilter()"></i>
+          <i class="fa fa-chevron-down filterChevron" aria-hidden="true"></i>
         </div>
       </div>
     `;

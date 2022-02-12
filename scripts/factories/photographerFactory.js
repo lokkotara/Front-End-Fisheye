@@ -21,20 +21,20 @@ export default class PhotographerFactory {
 
   cardTemplate() {
     return /*html*/`
-      <article onclick="changePage(['photographer', ${this.id}])">
+      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" tabindex="0" onkeyup.enter="changePage(['photographer', ${this.id}])">
           <img src="${this.picture}" alt="">
           <h2>${this.name}</h2>
-        <p class="descriptionFieldArea">
-          <span class="locationField">
+        <section class="descriptionFieldArea">
+          <p class="locationField">
             ${this.city}, ${this.country}
-          </span>
-          <span class="TagLineField">
+          </p>
+          <p class="TagLineField">
             ${this.tagline}
-          </span>
-          <span class="priceField">
+          </p>
+          <data class="priceField" value="${this.price}">
             ${this.price}€/jour
-          </span>
-        </p>
+          </data>
+        </section>
       </article>
     `;
   }

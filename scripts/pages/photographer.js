@@ -5,6 +5,7 @@ import {
   getPhotographer,
   getTotalLikes,
   getUpdateLikes,
+  watchKeyNav,
 } from "../services/dataManager.js";
 
 import Filter from "../components/Filter.js";
@@ -15,6 +16,7 @@ exposeElement("toggleModal", toggleModal.bind(this));
 exposeElement("toggleFilter", toggleFilter.bind(this));
 exposeElement("manageLike", manageLike.bind(this));
 exposeElement("sortBy", sortBy.bind(this));
+exposeElement("submitForm", submitForm.bind(this));
 
 let id;
 let photographer;
@@ -32,6 +34,7 @@ export default async function injectPage(array) {
   const DOMTarget       = document.querySelector(".heading_section");
   filter                = initFilter(medias);
   DOMTarget.innerHTML   = templatePhotographerHTML(photographer);
+  watchKeyNav();
 }
 
 function createContainer() {
@@ -44,49 +47,49 @@ function createContainer() {
 
 function templatePhotographerHTML(photographer) {
   return /*html*/`
-    <div class="photographer_header">
-      <div class="col">
+    <article class="photographer_header">
+      <section class="col">
         <h1>${photographer.name}</h1>
-        <p class="photographerLocation">${photographer.city}, ${photographer.country}</p>
+        <h2 class="photographerLocation">${photographer.city}, ${photographer.country}</h2>
         <p>${photographer.tagline}</p>
-      </div>
-      <div class="col">
-        <button class="contact_button" onclick="toggleModal()">Contactez-moi</button>
-      </div>
-      <div class="col">
-        <img src="${photographer.picture}">
-      </div>
-    </div>
-    <div class="filterArea">${filter.render()}</div>
-    <div class="mediasGallery">${displayMedias()}</div>
-    <div class="infoContainer">${templateInfosPhotographer()}</div>
-    <div class="contact_modal hidden">${templateModal()}</div>
+      </section>
+      <section class="col">
+        <button type="button" class="contact_button" onclick="toggleModal()">Contactez-moi</button>
+      </section>
+      <section class="col">
+        <img src="${photographer.picture}" alt="${photographer.name}">
+      </section>
+    </article>
+    <section class="filterArea">${filter.render()}</section>
+    <section class="mediasGallery">${displayMedias()}</section>
+    <section class="infoContainer">${templateInfosPhotographer()}</section>
+    <article class="contact_modal hidden">${templateModal()}</article>
 		</div>
   `;
 }
 
 function templateModal() {
   return /*html*/`
-    <div class="modal">
+    <aside class="modal">
       <header>
-      <div class="modalTitleContainer">
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="toggleModal()" />
-      </div>
+        <section class="modalTitleContainer">
+          <p>Contactez-moi</p>
+          <img src="assets/icons/close.svg" onclick="toggleModal()" alt="Icone pour fermer la modale" />
+        </section>
         <p class="modalTitleName">${photographer.name}</p>
       </header>
-      <form>
+      <form name="myform" id="myform">
         <div>
-          <label>Prénom</label>
-          <input type="search"/>
-          <label>Nom</label>
-          <input type="search"/>
-          <label>Email</label>
-          <input type="email"/>
-          <label>Votre message</label>
-          <input type="text-area"/>
+          <label for="senderFirstName">Prénom</label>
+          <input type="text" name="senderFirstName"id="senderFirstName" required/>
+          <label for="senderLastName">Nom</label>
+          <input type="text" name="senderLastName" id="senderLastName" required/>
+          <label for="senderEmail">Email</label>
+          <input type="email" name="senderEmail" id="senderEmail" required/>
+          <label for="senderContent">Votre message</label>
+          <input type="text-area" name="senderContent" id="senderContent" required/>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button" type="button" onclick="submitForm(event)" disabled>Envoyer</button>
       </form>
   `;
 }
@@ -94,10 +97,10 @@ function templateModal() {
 function templateInfosPhotographer() {
   return /*html*/`
     <span class="likesInfoContainer">
-      <span class="likesInfo">${totalLikes}</span>
+      <data class="likesInfo" value="${totalLikes}">${totalLikes}</data>
       <span class="fa fa-heart" aria-hidden="true"></span>
     </span>
-    <span class="priceInfoContainer">${photographer.price}€/jour</span>
+    <data class="priceInfoContainer" value="${photographer.price}">${photographer.price}€/jour</data>
   `;
 }
 
@@ -167,4 +170,21 @@ function updateMediasGallery(html) {
 function displayNewTotalLikes(value) {
   const likesInfo = document.querySelector(".likesInfo");
   likesInfo.innerHTML = value;
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const infosForm = [];
+  const formRequest = {};
+  const formInputs = document.forms["myform"].elements;
+  for (let i = 0, size = formInputs.length; i < size; i++) {
+    const obj = new Object();
+    obj[formInputs[i].name] = formInputs[i].value;
+    if (formInputs[i].localName === "input") infosForm.push(obj);
+  }
+  formRequest.formSenderInfos = infosForm;
+  formRequest.formRecipientName = photographer.name;
+  console.log(formRequest);//Affiche les infos dans la console pour cette version
+  document.forms["myform"].reset();
+  toggleModal();
 }

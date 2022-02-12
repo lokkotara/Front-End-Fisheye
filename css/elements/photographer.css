@@ -25,7 +25,7 @@
 .contact_modal {
     width: 100%;
     height: 100vh;
-    background-color: #c4c4c4c4;
+    background-color: rgba(196, 196, 196, 0.4);
     position: fixed;
     top: 0;
     left: 0;
@@ -53,7 +53,7 @@
 .modal {
     border-radius: 5px;
     background-color: var(--secondary-color-alt);
-    width: 50%;
+    width: 37.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,10 +68,6 @@
 
 .modal>header {
     width: 100%;
-}
-
-.modal header .modalTitleName {
-    text-align: start;
     font-size: 4rem;
 }
 
@@ -86,24 +82,24 @@
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: normal;
-    text-align: center;
+    line-height: 4rem;
 }
 
-form {
+#myform {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
 }
 
-form label {
+#myform label {
     color: #312E2E;
     font-size: 36px;
 }
 
-form div {
+#myform div {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -111,13 +107,22 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+#myform div>input {
+    font-size: 3rem;
+    line-height: 4rem;
     width: 100%;
-    height: 68px;
+    height: 4rem;
     border: none;
     border-radius: 5px;
+    box-sizing: border-box;
+    padding-left: 1rem;
 }
-
+#myform div>input::placeholder {
+    padding-left: 1rem;
+}
+#myform #senderContent {
+    height: 170px;
+}
 .mediaImage, .mediaVideo {
     width: 350px;
     height: 300px;
@@ -149,6 +154,9 @@ form input {
 .mediasGallery figcaption .mediaNumber {
     margin-right: 0.5rem;
 }
+.mediaCard figcaption>h2 {
+    font-size: inherit;
+}
 .iconFull {
     font-weight: 900;
 }
@@ -165,6 +173,7 @@ form input {
     display: flex;
     position: relative;
     min-width: 6.6rem;
+    cursor: pointer;
 }
 .filter ul {
     border-radius: 5px;
@@ -193,7 +202,7 @@ form input {
     right: 0.5rem;
     color: white;
     z-index: 11;
-    cursor: pointer;
+    pointer-events: none;
 }
 .filter .filterListContainer {
     cursor: pointer;
