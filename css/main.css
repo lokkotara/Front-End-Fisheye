@@ -38,3 +38,15 @@ p, h2 {
   cursor: pointer;
   fill: #901C1C;
 }
+
+.logo {
+  height: 50px;
+  margin-left: 80px;
+  cursor: pointer;
+}
+
+.logo:focus {
+  outline: dashed var(--primary-color);
+  outline-offset:  0.5rem;
+  border-radius: 5px;
+}

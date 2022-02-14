@@ -43,11 +43,33 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.formButton {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-.contact_button:hover {
+.contact_button:hover, .contact_button:focus {
     background-color: var(--secondary-color-alt);
     color: black;
     transition: all 0.2s cubic-bezier(.27,.3,.82,.47);
+
+}
+.formButton:hover, .formButton:focus {
+    background-color: var(--lighter-color);
+    color: var(--primary-color);
+    transition: all 0.2s cubic-bezier(.27,.3,.82,.47);
+}
+.contact_button:focus, .formButton:focus {
+    outline: dashed var(--primary-color);
+    outline-offset:  2px;
 }
 /* TODO mettre en forme la modale */
 .modal {
@@ -64,6 +86,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: none;
 }
 
 .modal>header {
@@ -117,8 +140,9 @@
     box-sizing: border-box;
     padding-left: 1rem;
 }
-#myform div>input::placeholder {
-    padding-left: 1rem;
+#myform div>input:focus{
+    outline: dashed var(--primary-color);
+    outline-offset:  2px;
 }
 #myform #senderContent {
     height: 170px;
@@ -154,6 +178,13 @@
 .mediasGallery figcaption .mediaNumber {
     margin-right: 0.5rem;
 }
+.mediaCard:focus, .heartIcon:focus {
+    outline: dashed var(--primary-color);
+    outline-offset:  2px;
+}
+.heartIcon:focus {
+    border-radius: 25%;
+}
 .mediaCard figcaption>h2 {
     font-size: inherit;
 }
@@ -182,13 +213,17 @@
     flex-direction: column;
     margin: 0;
     position: absolute;
-    padding: 0 0.5rem;
+    padding: 0;
     text-decoration: none;
     z-index: 10;
 }
+.filter ul:focus {
+    outline: dashed var(--primary-color);
+    outline-offset:  2px;
+}
 .filter li {
     list-style-type: none;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     padding-right: 1.5rem;
     color: white;
     width: 5rem;
@@ -209,6 +244,11 @@
 }
 .filter .filterListContainer li:hover {
     background-color: #7a1818;
+}
+
+.filter .filterListContainer li:focus {
+    outline: dashed var(--lighter-color);
+    outline-offset:  -4px;
 }
 
 .infoContainer {

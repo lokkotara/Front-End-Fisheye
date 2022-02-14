@@ -9,6 +9,8 @@ import {
 } from "../services/dataManager.js";
 
 import Filter from "../components/Filter.js";
+import Lightbox from "../components/Lightbox.js";
+import {changePage} from "../services/router.js";
 import {exposeElement} from "../utils/tools.js";
 import toggleModal from "../utils/contactForm.js";
 
@@ -17,6 +19,7 @@ exposeElement("toggleFilter", toggleFilter.bind(this));
 exposeElement("manageLike", manageLike.bind(this));
 exposeElement("sortBy", sortBy.bind(this));
 exposeElement("submitForm", submitForm.bind(this));
+exposeElement("showLightbox", showLightbox.bind(this));
 
 let id;
 let photographer;
@@ -54,7 +57,7 @@ function templatePhotographerHTML(photographer) {
         <p>${photographer.tagline}</p>
       </section>
       <section class="col">
-        <button type="button" class="contact_button" onclick="toggleModal()">Contactez-moi</button>
+        <button type="button" class="contact_button" onclick="toggleModal(event)">Contactez-moi</button>
       </section>
       <section class="col">
         <img src="${photographer.picture}" alt="${photographer.name}">
@@ -70,15 +73,15 @@ function templatePhotographerHTML(photographer) {
 
 function templateModal() {
   return /*html*/`
-    <aside class="modal">
+    <dialog class="modal">
       <header>
         <section class="modalTitleContainer">
           <p>Contactez-moi</p>
-          <img src="assets/icons/close.svg" onclick="toggleModal()" alt="Icone pour fermer la modale" />
+          <img src="assets/icons/close.svg" onclick="toggleModal(event)" alt="Icone pour fermer la modale" tabindex="0"/>
         </section>
         <p class="modalTitleName">${photographer.name}</p>
       </header>
-      <form name="myform" id="myform">
+      <form name="myform" id="myform" method="dialog">
         <div>
           <label for="senderFirstName">Prénom</label>
           <input type="text" name="senderFirstName"id="senderFirstName" required/>
@@ -89,8 +92,9 @@ function templateModal() {
           <label for="senderContent">Votre message</label>
           <input type="text-area" name="senderContent" id="senderContent" required/>
         </div>
-        <button class="contact_button" type="button" onclick="submitForm(event)" disabled>Envoyer</button>
+        <button class="formButton" type="button" onclick="submitForm(event)">Envoyer</button>
       </form>
+    </dialog>
   `;
 }
 
@@ -186,5 +190,11 @@ function submitForm(e) {
   formRequest.formRecipientName = photographer.name;
   console.log(formRequest);//Affiche les infos dans la console pour cette version
   document.forms["myform"].reset();
-  toggleModal();
+  toggleModal(e);
+}
+
+function showLightbox(media) {
+  const lightbox = new Lightbox(mediasObject);
+  lightbox.show(media);
+  changePage(["lightbox",media.id]);
 }

@@ -21,7 +21,7 @@ export default class PhotographerFactory {
 
   cardTemplate() {
     return /*html*/`
-      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" tabindex="0" onkeyup.enter="changePage(['photographer', ${this.id}])">
+      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" tabindex="0">
           <img src="${this.picture}" alt="">
           <h2>${this.name}</h2>
         <section class="descriptionFieldArea">

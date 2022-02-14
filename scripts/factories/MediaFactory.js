@@ -33,12 +33,13 @@ export class MediaPicture extends MediaFactory {
 
   mediaTemplate() {
     return /*html*/`
-    <article tabindex="0" class="mediaCard">
+    <article tabindex="0" class="mediaCard" onclick="showLightbox(${this.id})">
       <figure>
         <img src="./assets/images/${this.photographerId}/${this.image}" alt="${this.altText}" class="mediaImage">
         <figcaption>
           <h2>${this.title}</h2>
           <p class="mediaLikes">
+          ${this}
             <data class="mediaNumber" id="counter_${this.id}" value="${this.likes}">${this.likes}</data>
             <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})" tabindex="0"></span>
           </p>
@@ -57,7 +58,7 @@ export class MediaVideo extends MediaFactory {
 
   mediaTemplate() {
     return /*html*/`
-    <article tabindex="0" class="mediaCard">
+    <article tabindex="0" class="mediaCard" onclick="showLightbox(${this.id})">
       <figure>
         <video class="mediaVideo" src="./assets/images/${this.photographerId}/${this.video}"></video>
           <figcaption>
