@@ -39,9 +39,8 @@ export class MediaPicture extends MediaFactory {
         <figcaption>
           <h2>${this.title}</h2>
           <p class="mediaLikes">
-          ${this}
             <data class="mediaNumber" id="counter_${this.id}" value="${this.likes}">${this.likes}</data>
-            <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})" tabindex="0"></span>
+            <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id}, event)" tabindex="0"></span>
           </p>
         </figcaption>
       </figure>
@@ -65,7 +64,7 @@ export class MediaVideo extends MediaFactory {
             <h2>${this.title}</h2>
             <p class="mediaLikes">
               <data class="mediaNumber" id="counter_${this.id}" value="${this.likes}">${this.likes}</data>
-              <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id})" tabindex="0"></span>
+              <span class=" far fa-heart heartIcon" onclick="manageLike(${this.id}, event)" tabindex="0"></span>
             </p>
           </figcaption>
       </figure>

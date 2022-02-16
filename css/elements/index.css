@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-.photographer_section article:focus {
+.photographer_section article:focus-visible {
     outline-offset:  1rem;
     border-radius: 1rem;
     outline: dashed var(--primary-color);

@@ -20,10 +20,14 @@ exposeElement("manageLike", manageLike.bind(this));
 exposeElement("sortBy", sortBy.bind(this));
 exposeElement("submitForm", submitForm.bind(this));
 exposeElement("showLightbox", showLightbox.bind(this));
+exposeElement("next", next.bind(this));
+exposeElement("previous", previous.bind(this));
+exposeElement("closeLightbox", closeLightbox.bind(this));
 
 let id;
 let photographer;
 let filter;
+let lightbox;
 let totalLikes    = null;
 let medias        = [];
 let mediasObject  = [];
@@ -67,13 +71,16 @@ function templatePhotographerHTML(photographer) {
     <section class="mediasGallery">${displayMedias()}</section>
     <section class="infoContainer">${templateInfosPhotographer()}</section>
     <article class="contact_modal hidden">${templateModal()}</article>
+    <div class="lightbox hidden">
+      <div class="content"></div>
+    </div>
 		</div>
   `;
 }
 
 function templateModal() {
   return /*html*/`
-    <dialog class="modal">
+    <div class="modal" role="dialog">
       <header>
         <section class="modalTitleContainer">
           <p>Contactez-moi</p>
@@ -94,7 +101,7 @@ function templateModal() {
         </div>
         <button class="formButton" type="button" onclick="submitForm(event)">Envoyer</button>
       </form>
-    </dialog>
+    </div>
   `;
 }
 
@@ -127,7 +134,8 @@ function displayMedias(data) {
   return html;
 }
 
-function manageLike(id) {
+function manageLike(id, $event) {
+  $event.stopPropagation(); //FIXME: stop propagation empêche le like au clavier
   mediasObject.forEach(media => {
     if (media.id === id) {
       media.toggleLike();
@@ -137,6 +145,7 @@ function manageLike(id) {
     }
   });
 }
+
 function modifyLike(id, media) {
   const counterContainer = document.querySelector(`#counter_${id}`);
   const icon = counterContainer.nextElementSibling;
@@ -193,8 +202,18 @@ function submitForm(e) {
   toggleModal(e);
 }
 
-function showLightbox(media) {
-  const lightbox = new Lightbox(mediasObject);
-  lightbox.show(media);
-  changePage(["lightbox",media.id]);
+function showLightbox(id) {
+  const DOMTarget = document.querySelector(".lightbox");
+  lightbox = new Lightbox(mediasObject, DOMTarget);
+  lightbox.show(id);
+}
+
+function next() {
+  lightbox.next();
+}
+function previous() {
+  lightbox.previous();
+}
+function closeLightbox() {
+  lightbox.close();
 }

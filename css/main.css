@@ -45,7 +45,7 @@ p, h2 {
   cursor: pointer;
 }
 
-.logo:focus {
+.logo:focus-visible {
   outline: dashed var(--primary-color);
   outline-offset:  0.5rem;
   border-radius: 5px;

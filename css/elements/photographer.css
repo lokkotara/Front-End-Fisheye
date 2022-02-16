@@ -56,18 +56,18 @@
     cursor: pointer;
 }
 
-.contact_button:hover, .contact_button:focus {
+.contact_button:hover, .contact_button:focus-visible {
     background-color: var(--secondary-color-alt);
     color: black;
     transition: all 0.2s cubic-bezier(.27,.3,.82,.47);
 
 }
-.formButton:hover, .formButton:focus {
+.formButton:hover, .formButton:focus-visible {
     background-color: var(--lighter-color);
     color: var(--primary-color);
     transition: all 0.2s cubic-bezier(.27,.3,.82,.47);
 }
-.contact_button:focus, .formButton:focus {
+.contact_button:focus-visible, .formButton:focus-visible {
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
@@ -140,7 +140,7 @@
     box-sizing: border-box;
     padding-left: 1rem;
 }
-#myform div>input:focus{
+#myform div>input:focus-visible{
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
@@ -178,11 +178,11 @@
 .mediasGallery figcaption .mediaNumber {
     margin-right: 0.5rem;
 }
-.mediaCard:focus, .heartIcon:focus {
+.mediaCard:focus-visible, .heartIcon:focus-visible {
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
-.heartIcon:focus {
+.heartIcon:focus-visible {
     border-radius: 25%;
 }
 .mediaCard figcaption>h2 {
@@ -217,7 +217,7 @@
     text-decoration: none;
     z-index: 10;
 }
-.filter ul:focus {
+.filter ul:focus-visible {
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
@@ -244,9 +244,10 @@
 }
 .filter .filterListContainer li:hover {
     background-color: #7a1818;
+    border-radius: inherit;
 }
 
-.filter .filterListContainer li:focus {
+.filter .filterListContainer li:focus-visible {
     outline: dashed var(--lighter-color);
     outline-offset:  -4px;
 }
@@ -262,4 +263,27 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;
+}
+
+.lightbox {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lightbox>.content {
+    display: flex;
+    /* background-color: #fff; */
+}
+.lightbox>.content img, .lightbox>.content video {
+    width: 50rem;
+    height: 50rem;
+    object-fit: cover;
+
 }

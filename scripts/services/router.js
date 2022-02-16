@@ -1,14 +1,12 @@
 import {exposeElement} from "../utils/tools.js";
 import {getNameById} from "./dataManager.js";
 import index from "../pages/index.js";
-import lightbox from "../pages/lightbox.js";
 import photographer from "../pages/photographer.js";
 import render from "../components/navbar.js";
 
 let page;
 const pages = {
   index,
-  lightbox,
   photographer
 };
 
@@ -47,14 +45,6 @@ async function changePage(url){
       nextURL = pathname + `?${url[0]}/${url[1]}`;
       nextTitle = `Fisheye | Coup d'oeil sur ${photographerName}`;
       document.title = `Fisheye | Coup d'oeil sur ${photographerName}`;
-      break;
-    case "lightbox":
-      // const photographerName = await getNameById(url[1]);
-      // header.innerHTML = render("photographer");
-      page = pages[url[0]](url);
-      nextURL = pathname + `?${url[0]}/${url[1]}`;
-      nextTitle = "Fisheye | Lightbox view";
-      document.title = "Fisheye | Lightbox view";
       break;
     default:
       DOMTarget = document.querySelector(".heading_section");
