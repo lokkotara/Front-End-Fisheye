@@ -59,7 +59,7 @@ export class MediaVideo extends MediaFactory {
     return /*html*/`
     <article tabindex="0" class="mediaCard" onclick="showLightbox(${this.id})">
       <figure>
-        <video class="mediaVideo" src="./assets/images/${this.photographerId}/${this.video}"></video>
+        <video class="mediaVideo" src="./assets/images/${this.photographerId}/${this.video}" tabindex="-1"></video>
           <figcaption>
             <h2>${this.title}</h2>
             <p class="mediaLikes">

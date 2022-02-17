@@ -31,7 +31,7 @@ p, h2 {
 }
 
 .hidden {
-  display: none;
+  display: none!important;
 }
 .heartIcon {
   width: 1.1rem;

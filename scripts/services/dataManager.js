@@ -69,7 +69,7 @@ async function getNameById(id) {
 
 function watchKeyNav() {
   document.onkeyup = e => {
-    if (e.key === "Enter" && e.explicitOriginalTarget.localName !== "body" && e.target.onclick !== null) document.activeElement.onclick(e.target.onclick);
+    if (e.key === "Enter" && e.explicitOriginalTarget.localName !== "body" && e.target.onclick !== null) document.activeElement.onclick(e);
   };
 }
 

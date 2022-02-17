@@ -10,7 +10,6 @@ import {
 
 import Filter from "../components/Filter.js";
 import Lightbox from "../components/Lightbox.js";
-import {changePage} from "../services/router.js";
 import {exposeElement} from "../utils/tools.js";
 import toggleModal from "../utils/contactForm.js";
 
@@ -54,7 +53,7 @@ function createContainer() {
 
 function templatePhotographerHTML(photographer) {
   return /*html*/`
-    <article class="photographer_header">
+    <section class="photographer_header">
       <section class="col">
         <h1>${photographer.name}</h1>
         <h2 class="photographerLocation">${photographer.city}, ${photographer.country}</h2>
@@ -66,12 +65,12 @@ function templatePhotographerHTML(photographer) {
       <section class="col">
         <img src="${photographer.picture}" alt="${photographer.name}">
       </section>
-    </article>
+    </section>
     <section class="filterArea">${filter.render()}</section>
     <section class="mediasGallery">${displayMedias()}</section>
     <section class="infoContainer">${templateInfosPhotographer()}</section>
     <article class="contact_modal hidden">${templateModal()}</article>
-    <div class="lightbox hidden">
+    <div class="lightbox hidden" tabindex="0">
       <div class="content"></div>
     </div>
 		</div>
@@ -135,7 +134,7 @@ function displayMedias(data) {
 }
 
 function manageLike(id, $event) {
-  $event.stopPropagation(); //FIXME: stop propagation empêche le like au clavier
+  $event.stopPropagation();
   mediasObject.forEach(media => {
     if (media.id === id) {
       media.toggleLike();
@@ -206,6 +205,8 @@ function showLightbox(id) {
   const DOMTarget = document.querySelector(".lightbox");
   lightbox = new Lightbox(mediasObject, DOMTarget);
   lightbox.show(id);
+  DOMTarget.focus();
+  manageLightboxNav(DOMTarget);
 }
 
 function next() {
@@ -214,6 +215,43 @@ function next() {
 function previous() {
   lightbox.previous();
 }
-function closeLightbox() {
+function closeLightbox(DOMTarget) {
   lightbox.close();
+  document.onkeydown = null;
+  if (DOMTarget === undefined) DOMTarget = document.querySelector(".lightbox");
+  DOMTarget.parentNode.children[1].children[0].lastElementChild.firstElementChild.focus();
+  toggleAllExceptLightbox();
+}
+
+function manageLightboxNav(DOMTarget) {
+  toggleAllExceptLightbox();
+  document.onkeydown = e => {
+    switch (e.key) {
+      case "ArrowLeft":
+        previous();
+        break;
+      case "ArrowRight":
+        next();
+        break;
+      case "Escape":
+        closeLightbox(DOMTarget);
+        break;
+      case " ":
+        console.log(document.querySelector("video"));
+        //si le media est une vidéo, alors on lance la lecture
+        console.log("on lance la vidéo");
+        break;
+      default:
+        break;
+    }
+  };
+}
+
+function toggleAllExceptLightbox() {
+  const sections = document.querySelectorAll("section");
+  const header = document.querySelector("#headerContainer");
+  sections.forEach(section => {
+    section.classList.toggle("hidden");
+  });
+  header.classList.toggle("hidden");
 }

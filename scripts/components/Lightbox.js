@@ -36,29 +36,37 @@ export default class Lightbox {
 
   templatePictureHTML() {
     return `
-      <button class="fa-solid fa-chevron-left" onclick="previous()"></button>
+      <div class="colLightbox">
+        <span class="fa-solid fa-chevron-left lightboxIcon" onclick="previous()" tabindex="0"></span>
+      </div>
       <figure>
         <img src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.image}" alt="${this.currentMedia.altText}">
         <figcaption>
           <p>${this.currentMedia.title}</p>
         </figcaption>
       </figure>
-      <button class="fa-solid fa-chevron-right" onclick="next()"></button>
-      <i class="fa-solid fa-xmark" onclick="closeLightbox()"></i>
+      <div class="colLightbox">
+        <span class="fa-solid fa-chevron-right lightboxIcon" onclick="next()" tabindex="0"></span>
+      </div>
+      <span class="fa-solid fa-xmark lightboxIcon lightboxClose"  onclick="closeLightbox()" tabindex="0"></span>
     `;
   }
 
   templateVideoHTML() {
     return `
-      <button class="fa-solid fa-chevron-left" onclick="previous()"></button>
+      <div class="colLightbox">
+        <span class="fa-solid fa-chevron-left navChevron" onclick="previous()" tabindex="0"></span>
+      </div>
       <figure>
         <video src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.video}" controls>
         <figcaption>
           <p>${this.currentMedia.title}</p>
         </figcaption>
       </figure>
-      <button class="fa-solid fa-chevron-right" onclick="next()"></button>
-      <i class="fa-solid fa-xmark"  onclick="closeLightbox()"></i>
+      <div class="colLightbox colLightboxRight">
+        <span class="fa-solid fa-chevron-right lightboxIcon" onclick="next()" tabindex="0"></span>
+      </div>
+      <span class="fa-solid fa-xmark lightboxIcon lightboxClose"  onclick="closeLightbox()" tabindex="0"></span>
     `;
   }
 }

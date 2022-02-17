@@ -279,6 +279,7 @@
 }
 .lightbox>.content {
     display: flex;
+    position: relative;
     /* background-color: #fff; */
 }
 .lightbox>.content img, .lightbox>.content video {
@@ -286,4 +287,19 @@
     height: 50rem;
     object-fit: cover;
 
+}
+.colLightbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lightboxIcon {
+    cursor: pointer;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.lightboxClose {
+    position: absolute;
+    top: 1rem;
+    right: 0;
 }
