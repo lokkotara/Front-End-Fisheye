@@ -58,7 +58,7 @@ async function getTotalLikes(id) {
 
 async function getNameById(id) {
   let name;
-  photographers = await getAllPhotographers();
+  if (photographers === null) photographers = await getAllPhotographers();
   photographers.forEach((photographer) => {
     if (photographer["id"] === id) {
       name = photographer["name"];

@@ -41,7 +41,7 @@ export default class Lightbox {
       </div>
       <figure>
         <img src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.image}" alt="${this.currentMedia.altText}">
-        <figcaption>
+        <figcaption class="lightboxTitle">
           <p>${this.currentMedia.title}</p>
         </figcaption>
       </figure>
@@ -53,13 +53,13 @@ export default class Lightbox {
   }
 
   templateVideoHTML() {
-    return `
+    return /*html */`
       <div class="colLightbox">
-        <span class="fa-solid fa-chevron-left navChevron" onclick="previous()" tabindex="0"></span>
+        <span class="fa-solid fa-chevron-left navChevron lightboxIcon" onclick="previous()" tabindex="0"></span>
       </div>
       <figure>
-        <video src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.video}" controls>
-        <figcaption>
+        <video id="test" src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.video}" controls>
+        <figcaption class="lightboxTitle">
           <p>${this.currentMedia.title}</p>
         </figcaption>
       </figure>

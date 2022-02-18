@@ -53,13 +53,13 @@ function createContainer() {
 
 function templatePhotographerHTML(photographer) {
   return /*html*/`
-    <section class="photographer_header">
-      <section class="col">
+    <section class="photographer_header" aria-label="En-tête de présentation du photographe">
+      <section class="col" aria-label="Infos concernant le photographe">
         <h1>${photographer.name}</h1>
         <h2 class="photographerLocation">${photographer.city}, ${photographer.country}</h2>
         <p>${photographer.tagline}</p>
       </section>
-      <section class="col">
+      <section class="col" aria-hidden="true">
         <button type="button" class="contact_button" onclick="toggleModal(event)">Contactez-moi</button>
       </section>
       <section class="col">
@@ -96,7 +96,7 @@ function templateModal() {
           <label for="senderEmail">Email</label>
           <input type="email" name="senderEmail" id="senderEmail" required/>
           <label for="senderContent">Votre message</label>
-          <input type="text-area" name="senderContent" id="senderContent" required/>
+          <textarea rows="3" name="senderContent" id="senderContent" required></textarea>
         </div>
         <button class="formButton" type="button" onclick="submitForm(event)">Envoyer</button>
       </form>
@@ -237,9 +237,15 @@ function manageLightboxNav(DOMTarget) {
         closeLightbox(DOMTarget);
         break;
       case " ":
-        console.log(document.querySelector("video"));
-        //si le media est une vidéo, alors on lance la lecture
-        console.log("on lance la vidéo");
+        const video = document.querySelector("#test");
+        if (video   !== null) video
+          .play()
+          .then(() => {
+            console.log("Yay ! La vidéo est lancée !");
+          })
+          .catch((error) => {
+            console.error("Erreur: " + error);
+          });
         break;
       default:
         break;

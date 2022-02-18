@@ -140,12 +140,24 @@
     box-sizing: border-box;
     padding-left: 1rem;
 }
-#myform div>input:focus-visible{
+#myform div>input:focus-visible, #myform #senderContent:focus-visible {
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
 #myform #senderContent {
-    height: 170px;
+    /* height: 170px; */
+    width: 100%;
+    font-size: 3rem;
+    line-height: 4rem;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    resize: none;
+    font-weight: bold;
+}
+#myform #senderContent::placeholder {
+    font-family: "DM Sans", sans-serif;
 }
 .mediaImage, .mediaVideo {
     width: 350px;
@@ -177,6 +189,12 @@
 }
 .mediasGallery figcaption .mediaNumber {
     margin-right: 0.5rem;
+}
+.heartIcon {
+    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 1rem;
 }
 .mediaCard:focus-visible, .heartIcon:focus-visible {
     outline: dashed var(--primary-color);
@@ -295,6 +313,10 @@
 }
 .lightboxIcon {
     cursor: pointer;
+    /* width: 3rem;
+    height: 3rem; */
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
     font-size: 3rem;
     color: var(--primary-color);
 }
@@ -302,4 +324,13 @@
     position: absolute;
     top: 1rem;
     right: 0;
+}
+.lightboxIcon:hover {
+    background-color: var(--secondary-color);
+    color: var(--lighter-color);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.lightboxTitle>p {
+    font-size: 1.5rem;
+    color: var(--primary-color);
 }

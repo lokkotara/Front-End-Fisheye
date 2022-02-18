@@ -21,9 +21,9 @@ export default class PhotographerFactory {
 
   cardTemplate() {
     return /*html*/`
-      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" tabindex="0">
-          <img src="${this.picture}" alt="">
-          <h2>${this.name}</h2>
+      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" role="link" tabindex="0">
+        <img src="${this.picture}" alt="">
+        <h2>${this.name}</h2>
         <section class="descriptionFieldArea">
           <p class="locationField">
             ${this.city}, ${this.country}
