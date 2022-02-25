@@ -33,7 +33,11 @@
 }
 .noScroll {
     overflow: hidden;
-    padding-right: 15px;
+    padding-right: 1rem;
+    max-width: 1456px;
+}
+.noScrollInfos {
+    right: 2.5rem!important;
 }
 .contact_modal {
     width: 100%;

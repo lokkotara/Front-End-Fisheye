@@ -1,15 +1,20 @@
 function toggleModal() {
   const body = document.querySelector("body");
+  const infosContainer = document.querySelector(".infoContainer");
   const modal = document.querySelector(".contact_modal");
   const button = document.querySelector(".contact_button");
   modal.classList.toggle("hidden");
   if (modal.classList.contains("hidden")) {
     button.focus();
     body.classList.remove("noScroll");
+    console.log(infosContainer.classList);
+    infosContainer.classList.remove("noScrollInfos");
   }
   if (!modal.classList.contains("hidden")) {
     manageModalNav();
     body.classList.add("noScroll");
+    console.log(infosContainer.classList);
+    infosContainer.classList.add("noScrollInfos");
   }
 }
 
