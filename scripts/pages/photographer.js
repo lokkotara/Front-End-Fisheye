@@ -1,17 +1,18 @@
 
-import {MediaPicture, MediaVideo} from "../factories/MediaFactory.js";
 import {
+  debug,
   getMedias,
   getPhotographer,
   getTotalLikes,
   getUpdateLikes,
-  watchKeyNav,
 } from "../services/dataManager.js";
 
 import Filter from "../components/Filter.js";
 import Lightbox from "../components/Lightbox.js";
+import {MediaPicture} from "../factories/MediaPicture.js";
+import {MediaVideo} from "../factories/MediaVideo.js";
 import {exposeElement} from "../utils/tools.js";
-import toggleModal from "../utils/contactForm.js";
+import {toggleModal, templateModal} from "../utils/contactForm.js";
 
 exposeElement("toggleModal", toggleModal.bind(this));
 exposeElement("toggleFilter", toggleFilter.bind(this));
@@ -31,16 +32,17 @@ let totalLikes    = null;
 let medias        = [];
 let mediasObject  = [];
 
-export default async function injectPage(array) {
+export default function injectPage(array) {
+  if (debug) console.time("injectPage");
   createContainer();
   id                    = parseInt(array[1]);
-  photographer          = await getPhotographer(id);
-  medias                = await getMedias(id);
-  totalLikes            = await getTotalLikes(photographer.id);
+  photographer          = getPhotographer(id);
+  medias                = getMedias(id);
+  totalLikes            = getTotalLikes(photographer.id);
   const DOMTarget       = document.querySelector(".heading_section");
   filter                = initFilter(medias);
   DOMTarget.innerHTML   = templatePhotographerHTML(photographer);
-  watchKeyNav();
+  if (debug()) console.timeEnd("injectPage");
 }
 
 function createContainer() {
@@ -54,13 +56,13 @@ function createContainer() {
 function templatePhotographerHTML(photographer) {
   return /*html*/`
     <section class="photographer_header" aria-label="En-tête de présentation du photographe">
-      <section class="col" aria-label="Infos concernant le photographe">
+      <section class="col">
         <h1>${photographer.name}</h1>
         <h2 class="photographerLocation">${photographer.city}, ${photographer.country}</h2>
         <p>${photographer.tagline}</p>
       </section>
-      <section class="col" aria-hidden="true">
-        <button type="button" class="contact_button" onclick="toggleModal(event)">Contactez-moi</button>
+      <section class="col">
+        <button type="button" class="contact_button" onclick="toggleModal()">Contactez-moi</button>
       </section>
       <section class="col">
         <img src="${photographer.picture}" alt="${photographer.name}">
@@ -69,7 +71,7 @@ function templatePhotographerHTML(photographer) {
     <section class="filterArea">${filter.render()}</section>
     <section class="mediasGallery">${displayMedias()}</section>
     <section class="infoContainer">${templateInfosPhotographer()}</section>
-    <article class="contact_modal hidden">${templateModal()}</article>
+    <article class="contact_modal hidden">${templateModal(photographer)}</article>
     <div class="lightbox hidden" tabindex="0">
       <div class="content"></div>
     </div>
@@ -77,40 +79,13 @@ function templatePhotographerHTML(photographer) {
   `;
 }
 
-function templateModal() {
-  return /*html*/`
-    <div class="modal" role="dialog">
-      <header>
-        <section class="modalTitleContainer">
-          <p>Contactez-moi</p>
-          <img src="assets/icons/close.svg" onclick="toggleModal(event)" alt="Icone pour fermer la modale" tabindex="0"/>
-        </section>
-        <p class="modalTitleName">${photographer.name}</p>
-      </header>
-      <form name="myform" id="myform" method="dialog">
-        <div>
-          <label for="senderFirstName">Prénom</label>
-          <input type="text" name="senderFirstName"id="senderFirstName" required/>
-          <label for="senderLastName">Nom</label>
-          <input type="text" name="senderLastName" id="senderLastName" required/>
-          <label for="senderEmail">Email</label>
-          <input type="email" name="senderEmail" id="senderEmail" required/>
-          <label for="senderContent">Votre message</label>
-          <textarea rows="3" name="senderContent" id="senderContent" required></textarea>
-        </div>
-        <button class="formButton" type="button" onclick="submitForm(event)">Envoyer</button>
-      </form>
-    </div>
-  `;
-}
-
 function templateInfosPhotographer() {
   return /*html*/`
-    <span class="likesInfoContainer">
-      <data class="likesInfo" value="${totalLikes}">${totalLikes}</data>
-      <span class="fa fa-heart" aria-hidden="true"></span>
+    <span class="likesInfoContainer" aria-label="nombre de j'aime">
+      <data class="likesInfo" value="${totalLikes} j'aime" aria-label="${totalLikes} j'aime">${totalLikes}</data>
+      <span class="fa fa-heart"></span>
     </span>
-    <data class="priceInfoContainer" value="${photographer.price}">${photographer.price}€/jour</data>
+    <data class="priceInfoContainer" value="${photographer.price}"  aria-label="Tarif de ${photographer.price} euros par jour">${photographer.price}€/jour</data>
   `;
 }
 
@@ -202,29 +177,33 @@ function submitForm(e) {
 }
 
 function showLightbox(id) {
+  const body = document.querySelector("body");
   const DOMTarget = document.querySelector(".lightbox");
   lightbox = new Lightbox(mediasObject, DOMTarget);
   lightbox.show(id);
-  DOMTarget.focus();
   manageLightboxNav(DOMTarget);
+  lightbox.manageLightboxNav();
+  body.classList.add("noScroll");
 }
 
 function next() {
   lightbox.next();
+  lightbox.manageLightboxNav();
 }
 function previous() {
   lightbox.previous();
+  lightbox.manageLightboxNav();
 }
 function closeLightbox(DOMTarget) {
+  const body = document.querySelector("body");
   lightbox.close();
   document.onkeydown = null;
   if (DOMTarget === undefined) DOMTarget = document.querySelector(".lightbox");
   DOMTarget.parentNode.children[1].children[0].lastElementChild.firstElementChild.focus();
-  toggleAllExceptLightbox();
+  body.classList.remove("noScroll");
 }
 
 function manageLightboxNav(DOMTarget) {
-  toggleAllExceptLightbox();
   document.onkeydown = e => {
     switch (e.key) {
       case "ArrowLeft":
@@ -237,12 +216,10 @@ function manageLightboxNav(DOMTarget) {
         closeLightbox(DOMTarget);
         break;
       case " ":
-        const video = document.querySelector("#test");
-        if (video   !== null) video
+        const video = document.querySelector("#videoLightbox");
+        if (video !== null) video
           .play()
-          .then(() => {
-            console.log("Yay ! La vidéo est lancée !");
-          })
+          .then()
           .catch((error) => {
             console.error("Erreur: " + error);
           });
@@ -251,13 +228,4 @@ function manageLightboxNav(DOMTarget) {
         break;
     }
   };
-}
-
-function toggleAllExceptLightbox() {
-  const sections = document.querySelectorAll("section");
-  const header = document.querySelector("#headerContainer");
-  sections.forEach(section => {
-    section.classList.toggle("hidden");
-  });
-  header.classList.toggle("hidden");
 }

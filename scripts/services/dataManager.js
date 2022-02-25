@@ -1,79 +1,64 @@
 import PhotographerFactory from "../factories/photographerFactory.js";
-
-let src;
-let photographers = null;
 let photographerArray = [];
+let photographers = null;
 let media = null;
+const isDebug = false; //Mettre à true pour afficher les temps d'execution des fonctions choisies
 
-function setDataManagerSource(source) {
-  src = source;
-}
-
-async function initDataManager() {
+async function setDataManagerSource(source) {
+  if (debug) console.time("setDataManagerSource");
   try {
-    const query = await fetch(src);
+    const query = await fetch(source);
     const response =  await query.json();
     photographers = response.photographers;
     media = response.media;
+    photographerArray = getAllPhotographers();
   } catch (error) {
     console.error(error);
   }
+  if (debug()) console.timeEnd("setDataManagerSource");
+
 }
 
-async function getAllPhotographers() {
-  if (photographers === null) await initDataManager();
+function getAllPhotographers() {
   photographerArray = [];
   photographers.forEach((photographer) => {
-    const photographerModel = new PhotographerFactory(photographer);
-    photographerArray.push(photographerModel);
+    photographerArray.push(new PhotographerFactory(photographer));
   });
   return photographerArray;
 }
 
-async function getPhotographer(id) {
-  if (photographerArray.length < 1) await getAllPhotographers();
-  for (const photographer of photographerArray) {
-    if (photographer["id"] === id) {
-      return photographer;
-    }
-  }
+function getPhotographer(id) {
+  return photographerArray.find(photographer => photographer["id"] === id);
 }
 
-async function getMedias(id) {
-  if (media === null) await initDataManager();
-  const array = media.filter(media => media["photographerId"] === id);
-  return array;
+function getMedias(id) {
+  return media.filter(media => media["photographerId"] === id);
 }
+
 function getUpdateLikes(array) {
   let sum = null;
   array.forEach(media => sum += media["likes"]);
   return sum;
 }
-async function getTotalLikes(id) {
-  const array = await getMedias(id);
+
+function getTotalLikes(id) {
+  const array = getMedias(id);
   let sum = null;
   array.forEach(media => sum += media["likes"]);
   return sum;
 }
 
-async function getNameById(id) {
-  let name;
-  if (photographers === null) photographers = await getAllPhotographers();
-  photographers.forEach((photographer) => {
-    if (photographer["id"] === id) {
-      name = photographer["name"];
-    }
-  });
-  return name;
+function getNameById(id) {
+  const obj = photographers.find(photo => photo["id"] === parseInt(id));
+  return obj.name;
 }
 
-function watchKeyNav() {
-  document.onkeyup = e => {
-    if (e.key === "Enter" && e.explicitOriginalTarget.localName !== "body" && e.target.onclick !== null) document.activeElement.onclick(e);
-  };
+function debug() {
+  return isDebug;
 }
 
 export {
+  debug,
   getAllPhotographers,
   getMedias,
   getNameById,
@@ -81,6 +66,4 @@ export {
   getTotalLikes,
   getUpdateLikes,
   setDataManagerSource,
-  initDataManager,
-  watchKeyNav,
 };

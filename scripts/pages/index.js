@@ -1,15 +1,11 @@
-import { getAllPhotographers, watchKeyNav } from "../services/dataManager.js";
-
-export default async function pageIndex() {
+import { getAllPhotographers } from "../services/dataManager.js";
+export default function pageIndex() {
   createContainer();
   const DOMTarget = document.querySelector(".photographer_section");
   let html = "";
-  const photographers = await getAllPhotographers();
-  photographers.forEach((photographer) => {
-    html += photographer.getCard();
-  });
+  const photographers = getAllPhotographers();
+  photographers.forEach((photographer) => html += photographer.getCard());
   DOMTarget.innerHTML = html;
-  watchKeyNav();
 }
 
 function createContainer() {

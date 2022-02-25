@@ -8,11 +8,6 @@ export default class Filter {
       "Date",
       "Titre"
     ];
-    // this.orderObjectList = [
-    //   {Popularité   : "Popularité"},
-    //   {Date         : "Date"},
-    //   {Titre        : "Titre"}
-    // ];
   }
 
   render() {
@@ -21,16 +16,16 @@ export default class Filter {
   }
 
   templateOpened() {
-    return `
+    return /*html*/`
       <div class="filterContainer">
         <p>Trier par</p>
         <div class="filter">
           <ul class="filterListContainer">
-            <li tabindex="0" onclick="sortBy('${this.orderList[0]}')">${this.orderList[0]}</li>
-            <li tabindex="0" onclick="sortBy('${this.orderList[1]}')">${this.orderList[1]}</li>
-            <li tabindex="0" onclick="sortBy('${this.orderList[2]}')">${this.orderList[2]}</li>
+            <li aria-label="Trier par ${this.orderList[0]}" tabindex="0" role="button" onclick="sortBy('${this.orderList[0]}')">${this.orderList[0]}</li>
+            <li aria-label="Trier par ${this.orderList[1]}" tabindex="0" role="button" onclick="sortBy('${this.orderList[1]}')">${this.orderList[1]}</li>
+            <li aria-label="Trier par ${this.orderList[2]}" tabindex="0" role="button" onclick="sortBy('${this.orderList[2]}')">${this.orderList[2]}</li>
           </ul>
-          <i class="fa fa-chevron-up filterChevron" aria-hidden="true" onclick="toggleFilter()"></i>
+          <i class="fa fa-chevron-up filterChevron" aria-hidden="true" onclick="toggleFilter()" aria-labelledBy="filterListContainer"></i>
         </div>
       </div>
     `;
@@ -38,7 +33,7 @@ export default class Filter {
 
   templateClosed() {
     return /*html*/`
-      <div class="filterContainer">
+      <div class="filterContainer"  aria-label="Filtre de tri des médias">
         <p>Trier par</p>
         <div class="filter">
           <ul tabindex="0" onclick="toggleFilter()">

@@ -1,12 +1,21 @@
-/* TODO styliser la partie gauche du heading */
 .photographer_header {
     background-color: var(--lighter-color);
     height: 200px;
-    margin: 0 80px;
+    margin: 0 3.5rem;
     display: flex;
     justify-content: space-between;    
     align-items: center;
     padding: 2rem;
+}
+#headerContainer .logoNavbar {
+    height: 50px;
+    margin-left: 3.5rem;
+    cursor: pointer;
+}
+#headerContainer .logoNavbar:focus-visible {
+    outline: dashed var(--primary-color);
+    outline-offset:  0.5rem;
+    border-radius: 5px;
 }
 .photographer_header h1 {
     margin: 0;
@@ -22,9 +31,14 @@
     color: var(--darker-color);
     font-size: 1.1rem;
 }
+.noScroll {
+    overflow: hidden;
+    padding-right: 15px;
+}
 .contact_modal {
     width: 100%;
     height: 100vh;
+    overflow: hidden;
     background-color: rgba(196, 196, 196, 0.4);
     position: fixed;
     top: 0;
@@ -71,7 +85,6 @@
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
-/* TODO mettre en forme la modale */
 .modal {
     border-radius: 5px;
     background-color: var(--secondary-color-alt);
@@ -102,6 +115,12 @@
 
 .modal header img {
     cursor: pointer;
+}
+
+.modal header .modalCloseButton:focus-visible {
+    outline: dashed var(--primary-color);
+    outline-offset:  2px;
+    border-radius: 25px;
 }
 
 .modal header h2 {
@@ -212,7 +231,7 @@
 
 .filterContainer {
     display: flex;
-    margin: 1rem 80px 3.5rem;
+    margin: 1rem 3.5rem 3.5rem;
 }
 .filterContainer>p {
     font-weight: bold;
@@ -325,10 +344,14 @@
     top: 1rem;
     right: 0;
 }
-.lightboxIcon:hover {
+.lightboxIcon:hover, .lightboxIcon:focus-visible {
     background-color: var(--secondary-color);
     color: var(--lighter-color);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.lightboxIcon:focus-visible, .lightbox .content video:focus-visible {
+    outline: dashed var(--primary-color);
+    outline-offset:  2px;
 }
 .lightboxTitle>p {
     font-size: 1.5rem;
