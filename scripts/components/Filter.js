@@ -55,11 +55,11 @@ export default class Filter {
     this.sortedData = data.sort((a, b) => {
       switch (type) {
         case "Popularité":
-          return compare(a.likes, b.likes);
+          return compareDESC(a.likes, b.likes);
         case "Date":
-          return compare(a.date, b.date);
+          return compareASC(a.date, b.date);
         case "Titre":
-          return compare(a.title, b.title);
+          return compareASC(a.title, b.title);
         default:
           console.error("houston...");
           return 0;
@@ -82,6 +82,9 @@ export default class Filter {
   }
 }
 
-function compare(a, b) {
+function compareASC(a, b) {
   return (a < b ? -1 : 1);
+}
+function compareDESC(a, b) {
+  return (a > b ? -1 : 1);
 }

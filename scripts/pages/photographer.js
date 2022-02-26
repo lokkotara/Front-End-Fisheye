@@ -6,13 +6,16 @@ import {
   getTotalLikes,
   getUpdateLikes,
 } from "../services/dataManager.js";
+import {
+  templateModal,
+  toggleModal,
+} from "../utils/contactForm.js";
 
 import Filter from "../components/Filter.js";
 import Lightbox from "../components/Lightbox.js";
 import {MediaPicture} from "../factories/MediaPicture.js";
 import {MediaVideo} from "../factories/MediaVideo.js";
 import {exposeElement} from "../utils/tools.js";
-import {toggleModal, templateModal} from "../utils/contactForm.js";
 
 exposeElement("toggleModal", toggleModal.bind(this));
 exposeElement("toggleFilter", toggleFilter.bind(this));
@@ -71,7 +74,7 @@ function templatePhotographerHTML(photographer) {
     <section class="filterArea">${filter.render()}</section>
     <section class="mediasGallery">${displayMedias()}</section>
     <section class="infoContainer">${templateInfosPhotographer()}</section>
-    <article class="contact_modal hidden">${templateModal(photographer)}</article>
+    <dialog class="contact_modal">${templateModal(photographer)}</dialog>
     <div class="lightbox hidden" tabindex="0">
       <div class="content"></div>
     </div>
@@ -161,19 +164,19 @@ function displayNewTotalLikes(value) {
 
 function submitForm(e) {
   e.preventDefault();
-  const infosForm = [];
-  const formRequest = {};
-  const formInputs = document.forms["myform"].elements;
-  for (let i = 0, size = formInputs.length; i < size; i++) {
-    const obj = new Object();
-    obj[formInputs[i].name] = formInputs[i].value;
-    if (formInputs[i].localName === "input") infosForm.push(obj);
-  }
-  formRequest.formSenderInfos = infosForm;
-  formRequest.formRecipientName = photographer.name;
+  const modal = document.querySelector(".contact_modal");
+  const form = document.forms["myform"];
+  const formRequest = {
+    recipientName: photographer.name,
+    senderContent: form.elements["senderContent"].value,
+    senderEmail: form.elements["senderEmail"].value,
+    senderFirstName: form.elements["senderFirstName"].value,
+    senderLastName: form.elements["senderLastName"].value,
+  };
   console.log(formRequest);//Affiche les infos dans la console pour cette version
-  document.forms["myform"].reset();
-  toggleModal(e);
+  form.reset();
+  modal.close();
+  document.activeElement.blur();
 }
 
 function showLightbox(id) {
@@ -216,6 +219,7 @@ function manageLightboxNav(DOMTarget) {
         closeLightbox(DOMTarget);
         break;
       case " ":
+        e.preventDefault();
         const video = document.querySelector("#videoLightbox");
         if (video !== null) video
           .play()

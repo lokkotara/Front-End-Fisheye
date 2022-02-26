@@ -6,8 +6,12 @@ definePage();
 watchKeyNav();
 
 function watchKeyNav() {
-  document.onkeyup = e => {
-    if (e.key === "Enter" && e.target.localName !== "body" && e.target.onclick !== null) {
+  document.onkeyup = (e) => {
+    if (
+      e.key === "Enter" &&
+      e.target.localName !== "body" &&
+      e.target.onclick !== null
+    ) {
       e.preventDefault();
       document.activeElement.onclick(e);
     }

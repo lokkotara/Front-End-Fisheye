@@ -40,14 +40,17 @@
     right: 2.5rem!important;
 }
 .contact_modal {
-    width: 100%;
-    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
     overflow: hidden;
     background-color: rgba(196, 196, 196, 0.4);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 15;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 .contact_button {
     font-size: 20px;
@@ -121,10 +124,19 @@
     cursor: pointer;
 }
 
+.modal header .modalCloseButton {
+    padding: 0.5rem;
+}
+
 .modal header .modalCloseButton:focus-visible {
     outline: dashed var(--primary-color);
     outline-offset:  2px;
-    border-radius: 25px;
+    border-radius: 50%;
+    filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
+}
+
+.modal header .modalCloseButton:hover {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
 }
 
 .modal header h2 {
@@ -163,12 +175,17 @@
     box-sizing: border-box;
     padding-left: 1rem;
 }
+.valid {
+    border: 1px solid lightgreen;
+}
+.invalid {
+    border: 1px solid red;
+}
 #myform div>input:focus-visible, #myform #senderContent:focus-visible {
     outline: dashed var(--primary-color);
     outline-offset:  2px;
 }
 #myform #senderContent {
-    /* height: 170px; */
     width: 100%;
     font-size: 3rem;
     line-height: 4rem;
@@ -212,6 +229,7 @@
 }
 .mediasGallery figcaption .mediaNumber {
     margin-right: 0.5rem;
+    font-weight: 500;
 }
 .heartIcon {
     border: none;
@@ -228,6 +246,7 @@
 }
 .mediaCard figcaption>h2 {
     font-size: inherit;
+    font-weight: normal;
 }
 .iconFull {
     font-weight: 900;
