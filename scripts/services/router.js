@@ -1,4 +1,4 @@
-import {exposeElement} from "../utils/tools.js";
+import exposeElement from "../utils/tools.js";
 import {getNameById} from "./dataManager.js";
 import index from "../pages/index.js";
 import photographer from "../pages/photographer.js";

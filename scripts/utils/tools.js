@@ -1,7 +1,3 @@
-function exposeElement(key, value){
+export default function exposeElement(key, value){
   window[key] = value;
 }
-
-export {
-  exposeElement
-};

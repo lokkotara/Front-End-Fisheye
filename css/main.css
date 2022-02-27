@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 @import url('./elements/index.css');
 @import url('./elements/photographer.css');
+@import url('./elements/contactForm.css');
+@import url('./elements/mediasGallery.css');
+@import url('./elements/filter.css');
+@import url('./elements/lightbox.css');
 
 :root {
   --primary-color: #901C1C;
@@ -32,12 +36,28 @@ p, h2 {
 .hidden {
   display: none!important;
 }
-.heartIcon {
-  width: 1.1rem;
-  cursor: pointer;
-  fill: #901C1C;
-}
 
+.invalid {
+  border: 1px solid red!important;
+}
+.noScroll {
+  overflow: hidden;
+  padding-right: 1rem;
+  max-width: 1456px;
+}
+.heartIcon {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+.heartIcon:focus-visible {
+  border-radius: 25%;
+}
+.heartFull {
+  font-weight: 900;
+}
 .logo {
   height: 50px;
   margin-left: 5rem;

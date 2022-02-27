@@ -1,0 +1,58 @@
+.filterContainer {
+  display: flex;
+  margin: 1rem 3.5rem 3.5rem;
+}
+.filterContainer>p {
+  font-weight: bold;
+}
+.filter {
+  padding: 0 0.5rem;
+  display: flex;
+  position: relative;
+  min-width: 6.6rem;
+  cursor: pointer;
+}
+.filter ul {
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  position: absolute;
+  padding: 0;
+  text-decoration: none;
+  z-index: 10;
+}
+.filter ul:focus-visible {
+  outline: dashed var(--primary-color);
+  outline-offset:  2px;
+}
+.filter li {
+  list-style-type: none;
+  padding: 0.5rem;
+  padding-right: 1.5rem;
+  color: white;
+  width: 5rem;
+}
+.filter li:not(:last-child) {
+  border-bottom: 1px solid white;
+}
+.filter>.filterChevron {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.5rem;
+  color: white;
+  z-index: 11;
+  pointer-events: none;
+}
+.filter .filterListContainer {
+  cursor: pointer;
+}
+.filter .filterListContainer li:hover {
+  background-color: #7a1818;
+  border-radius: inherit;
+}
+.filter .filterListContainer li:focus-visible {
+  outline: dashed var(--lighter-color);
+  outline-offset:  -4px;
+}

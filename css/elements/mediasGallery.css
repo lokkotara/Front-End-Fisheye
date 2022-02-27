@@ -1,0 +1,40 @@
+.mediaImage, .mediaVideo {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.mediasGallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.mediasGallery article {
+  justify-self: center;
+
+}
+.mediasGallery article figure {
+  margin: 0;
+}
+.mediasGallery article figcaption {
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mediasGallery figcaption .mediaLikes {
+  display: flex;
+  align-items: center;
+}
+.mediasGallery figcaption .mediaNumber {
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+.mediaCard:focus-visible, .heartIcon:focus-visible {
+  outline: dashed var(--primary-color);
+  outline-offset:  2px;
+}
+.mediaCard figcaption>h2 {
+  font-size: inherit;
+  font-weight: normal;
+}

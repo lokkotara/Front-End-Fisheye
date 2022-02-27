@@ -3,7 +3,7 @@ import {
   checkValidityInput,
   templateModal,
   toggleModal,
-} from "../utils/contactForm.js";
+} from "../components/contactForm.js";
 import {
   debug,
   getMedias,
@@ -16,7 +16,7 @@ import Filter from "../components/Filter.js";
 import Lightbox from "../components/Lightbox.js";
 import {MediaPicture} from "../factories/MediaPicture.js";
 import {MediaVideo} from "../factories/MediaVideo.js";
-import {exposeElement} from "../utils/tools.js";
+import exposeElement from "../utils/tools.js";
 
 exposeElement("checkValidityInput", checkValidityInput.bind(this));
 exposeElement("toggleModal", toggleModal.bind(this));
@@ -128,7 +128,7 @@ function manageLike(id, $event) {
 function modifyLike(id, media) {
   const counterContainer = document.querySelector(`#counter_${id}`);
   const icon = counterContainer.nextElementSibling;
-  icon.classList.toggle("iconFull");
+  icon.classList.toggle("heartFull");
   counterContainer.innerText = media;
 }
 
