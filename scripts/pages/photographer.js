@@ -1,15 +1,16 @@
 
 import {
+  checkValidityInput,
+  templateModal,
+  toggleModal,
+} from "../utils/contactForm.js";
+import {
   debug,
   getMedias,
   getPhotographer,
   getTotalLikes,
   getUpdateLikes,
 } from "../services/dataManager.js";
-import {
-  templateModal,
-  toggleModal,
-} from "../utils/contactForm.js";
 
 import Filter from "../components/Filter.js";
 import Lightbox from "../components/Lightbox.js";
@@ -17,6 +18,7 @@ import {MediaPicture} from "../factories/MediaPicture.js";
 import {MediaVideo} from "../factories/MediaVideo.js";
 import {exposeElement} from "../utils/tools.js";
 
+exposeElement("checkValidityInput", checkValidityInput.bind(this));
 exposeElement("toggleModal", toggleModal.bind(this));
 exposeElement("toggleFilter", toggleFilter.bind(this));
 exposeElement("manageLike", manageLike.bind(this));

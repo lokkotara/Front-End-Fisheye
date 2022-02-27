@@ -166,7 +166,7 @@
 }
 
 #myform div>input {
-    font-size: 3rem;
+    font-size: 1.5rem;
     line-height: 4rem;
     width: 100%;
     height: 4rem;
@@ -174,12 +174,10 @@
     border-radius: 5px;
     box-sizing: border-box;
     padding-left: 1rem;
-}
-.valid {
-    border: 1px solid lightgreen;
+    font-family: "DM Sans", sans-serif;
 }
 .invalid {
-    border: 1px solid red;
+    border: 1px solid var(--primary-color)!important;
 }
 #myform div>input:focus-visible, #myform #senderContent:focus-visible {
     outline: dashed var(--primary-color);
@@ -187,17 +185,18 @@
 }
 #myform #senderContent {
     width: 100%;
-    font-size: 3rem;
+    font-size: 1.5rem;
     line-height: 4rem;
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
     padding-left: 1rem;
     resize: none;
-    font-weight: bold;
-}
-#myform #senderContent::placeholder {
     font-family: "DM Sans", sans-serif;
+}
+
+#myform #senderContent::placeholder {
+    font-weight: 500;
 }
 .mediaImage, .mediaVideo {
     width: 350px;

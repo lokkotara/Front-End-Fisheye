@@ -31,21 +31,28 @@ function templateModal(photographer) {
       <form name="myform" id="myform" method="dialog" onsubmit="submitForm(event)">
         <div>
           <label for="senderFirstName">Prénom</label>
-          <input type="text" name="senderFirstName"id="senderFirstName" required/>
+          <input type="text" name="senderFirstName"id="senderFirstName" pattern="^[a-zA-Z]{1}[a-zA-Z'À-ÿ -]+$" oninput="checkValidityInput(event, 'senderFirstName')" required/>
           <label for="senderLastName">Nom</label>
-          <input type="text" name="senderLastName" id="senderLastName" required/>
+          <input type="text" name="senderLastName" id="senderLastName" pattern="^[a-zA-Z]{1}[a-zA-Z'À-ÿ -]+$" oninput="checkValidityInput(event, 'senderLastName')" required/>
           <label for="senderEmail">Email</label>
-          <input type="email" name="senderEmail" id="senderEmail" required/>
+          <input type="email" name="senderEmail" id="senderEmail" pattern="^[A-Za-z0-9](([_.-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_.-]?[a-zA-Z0-9]+)*).([A-Za-z]{2,})" oninput="checkValidityInput(event, 'senderEmail')" required/>
           <label for="senderContent">Votre message</label>
-          <textarea rows="2" name="senderContent" id="senderContent" required></textarea>
+          <textarea rows="2" name="senderContent" id="senderContent" oninput="checkValidityInput(event, 'senderContent', 'Le message ne doit contenir que des lettres')" required></textarea>
         </div>
         <button class="formButton" type="submit">Envoyer</button>
       </form>
     </div>
-  `;//TODO : la touche entrée semble déclencher la soumission du formulaire
+  `;
+}
+
+function checkValidityInput(e, input) {
+  const form = document.forms["myform"];
+  if (!e.target.validity.valid) form.elements[input].classList.add("invalid");
+  if (e.target.validity.valid) form.elements[input].classList.remove("invalid");
 }
 
 export {
+  checkValidityInput,
   templateModal,
   toggleModal,
 };
