@@ -17,7 +17,8 @@
 .lightbox>.content img, .lightbox>.content video {
   width: 50rem;
   height: 50rem;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .colLightbox {
   display: flex;

@@ -91,11 +91,13 @@
   outline: dashed var(--primary-color);
   outline-offset:  2px;
   border-radius: 50%;
-  filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
+  -webkit-filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
+          filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
 }
 
 .modal header .modalCloseButton:hover {
-  filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
+  -webkit-filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
+          filter: brightness(0) saturate(100%) invert(16%) sepia(50%) saturate(3628%) hue-rotate(347deg) brightness(93%) contrast(92%);
 }
 
 .modal header h2 {
@@ -149,6 +151,22 @@
   padding-left: 1rem;
   resize: none;
   font-family: "DM Sans", sans-serif;
+}
+
+#myform #senderContent::-webkit-input-placeholder {
+  font-weight: 500;
+}
+
+#myform #senderContent::-moz-placeholder {
+  font-weight: 500;
+}
+
+#myform #senderContent:-ms-input-placeholder {
+  font-weight: 500;
+}
+
+#myform #senderContent::-ms-input-placeholder {
+  font-weight: 500;
 }
 
 #myform #senderContent::placeholder {

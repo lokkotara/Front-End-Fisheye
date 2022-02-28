@@ -16,6 +16,8 @@
     align-items: center;
     flex-direction: column;
     align-self: center;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     margin: 0 auto;
     cursor: pointer;
@@ -44,7 +46,8 @@
 .photographer_section article img, .photographer_header img {
     height: 200px;
     width: 200px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     border-radius: 50%;
     transition: box-shadow 0.2s ease-in-out;
 }
