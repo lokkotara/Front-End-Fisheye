@@ -153,22 +153,6 @@
   font-family: "DM Sans", sans-serif;
 }
 
-#myform #senderContent::-webkit-input-placeholder {
-  font-weight: 500;
-}
-
-#myform #senderContent::-moz-placeholder {
-  font-weight: 500;
-}
-
-#myform #senderContent:-ms-input-placeholder {
-  font-weight: 500;
-}
-
-#myform #senderContent::-ms-input-placeholder {
-  font-weight: 500;
-}
-
 #myform #senderContent::placeholder {
   font-weight: 500;
 }

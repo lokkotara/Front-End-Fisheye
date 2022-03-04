@@ -49,6 +49,13 @@ export default class Filter {
     this.isOpened = !this.isOpened;
   }
 
+  /**
+   * Permet de classer les medias en fonction du type de tri passé en paramètre.
+   *
+   * @param   {String}  type  Peut être un string entre "Popularité", "Date" et "Titre"
+   *
+   * @return  {Array<object>}        Retourne le tableau des medias trié selon le type. Par défaut, effectue un tri par popularité
+   */
   sortFilterBy(type) {
     const data = this.medias.slice();
     if (!type) type = "Popularité";
@@ -61,13 +68,20 @@ export default class Filter {
         case "Titre":
           return compareASC(a.title, b.title);
         default:
-          console.error("houston...");
+          console.error("Ce type de tri n'existe pas :", type);
           return 0;
       }
     });
     return this.sortedData;
   }
 
+  /**
+   * Fait remonter à la première place le filtre choisi
+   *
+   * @param   {String}  type  Peut être un string entre "Popularité", "Date" et "Titre"
+   *
+   * @return  {HTMLElement}        Retourne le HTML actualisé
+   */
   updateFilterOrder(type) {
     let HTML;
     this.orderList.forEach(listItem => {
@@ -78,6 +92,7 @@ export default class Filter {
         HTML = this.render();
       }
     });
+    console.log(HTML);
     return HTML;
   }
 }

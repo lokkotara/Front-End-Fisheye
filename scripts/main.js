@@ -5,6 +5,10 @@ await setDataManagerSource("./data/photographers.json");
 definePage();
 watchKeyNav();
 
+/**
+ * Permet de simuler le clic lors de l'appui sur la touche 'entrée'
+ *
+ */
 function watchKeyNav() {
   document.onkeyup = (e) => {
     if (

@@ -1,3 +1,9 @@
+const form = document.forms["myform"];
+
+/**
+ * Permet de gérer l'ouverture et la fermeture de la modale de contact.
+ * Gère aussi le scroll sur le reste du document en fonction de l'ouverture de la modale
+ */
 function toggleModal() {
   const body = document.querySelector("body");
   const infosContainer = document.querySelector(".infoContainer");
@@ -13,7 +19,6 @@ function toggleModal() {
     body.classList.remove("noScroll");
     infosContainer.classList.remove("noScrollInfos");
   }
-
 }
 
 function templateModal(photographer) {
@@ -37,7 +42,7 @@ function templateModal(photographer) {
           <label for="senderEmail">Email</label>
           <input type="email" name="senderEmail" id="senderEmail" pattern="^[A-Za-z0-9](([_.-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_.-]?[a-zA-Z0-9]+)*).([A-Za-z]{2,})" oninput="checkValidityInput(event, 'senderEmail')" required/>
           <label for="senderContent">Votre message</label>
-          <textarea rows="2" name="senderContent" id="senderContent" oninput="checkValidityInput(event, 'senderContent', 'Le message ne doit contenir que des lettres')" required></textarea>
+          <textarea rows="2" name="senderContent" id="senderContent" oninput="checkValidityInput(event, 'senderContent')" required></textarea>
         </div>
         <button class="formButton" type="submit">Envoyer</button>
       </form>
@@ -46,7 +51,6 @@ function templateModal(photographer) {
 }
 
 function checkValidityInput(e, input) {
-  const form = document.forms["myform"];
   if (!e.target.validity.valid) form.elements[input].classList.add("invalid");
   if (e.target.validity.valid) form.elements[input].classList.remove("invalid");
 }

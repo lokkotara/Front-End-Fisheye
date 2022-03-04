@@ -18,7 +18,7 @@
   width: 50rem;
   height: 50rem;
   -o-object-fit: cover;
-     object-fit: cover;
+    object-fit: cover;
 }
 .colLightbox {
   display: flex;

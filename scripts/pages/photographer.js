@@ -4,6 +4,7 @@ import {
   templateModal,
   toggleModal,
 } from "../components/contactForm.js";
+
 import {
   debug,
   getMedias,
@@ -94,6 +95,13 @@ function templateInfosPhotographer() {
   `;
 }
 
+/**
+ * Permet de gérer l'affichage de la galerie de médias
+ *
+ * @param   {void | Array<object}  data  Peut être renseigné si l'ordre de tri des medias est différent de celui par défaut
+ *
+ * @return  {HTMLElement}        Retourne le HTML de la galerie de medias
+ */
 function displayMedias(data) {
   medias = filter.sortFilterBy();
   let html = "";
@@ -135,11 +143,13 @@ function modifyLike(id, media) {
 function initFilter(medias) {
   return new Filter(medias);
 }
+
 function toggleFilter() {
   const filterArea = document.querySelector(".filterArea");
   filter.toggle();
   filterArea.innerHTML = filter.render();
 }
+
 function updateFilter(html) {
   const filterArea = document.querySelector(".filterArea");
   filterArea.innerHTML = html;
@@ -208,7 +218,14 @@ function closeLightbox(DOMTarget) {
   body.classList.remove("noScroll");
 }
 
+/**
+ * Ajoute un système de navigation supplémentaire au clavier lorsque la lightbox est ouverte
+ *
+ * @param   {HTMLElement} DOMTarget l'élément HTML de la lightbox
+ *
+ */
 function manageLightboxNav(DOMTarget) {
+  console.log( DOMTarget);
   document.onkeydown = e => {
     switch (e.key) {
       case "ArrowLeft":

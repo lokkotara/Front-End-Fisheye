@@ -10,11 +10,6 @@ export default class PhotographerFactory {
     this.picture = `./assets/photographers/${this.portrait}`;
   }
 
-  /**
-   * Permet de créer l'affichage de la charset
-   *
-   * @return   Retourne la carte du photographe
-   */
   getCard() {
     return this.cardTemplate();
   }
@@ -38,5 +33,4 @@ export default class PhotographerFactory {
       </article>
     `;
   }
-
 }

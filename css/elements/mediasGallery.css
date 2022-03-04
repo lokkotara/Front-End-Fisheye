@@ -2,7 +2,7 @@
   width: 350px;
   height: 300px;
   -o-object-fit: cover;
-     object-fit: cover;
+    object-fit: cover;
 }
 
 .mediasGallery {

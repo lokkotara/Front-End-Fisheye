@@ -19,7 +19,8 @@ function definePage() {
 }
 
 /**
- * @param {Array.<string>} url
+ * Gère la redirection de la navigation, met à jour le titre de la page par rapoort à l'affichage souhaité et actualise l'historique de navigation
+ * @param {Array<string>} url
  * @return {void} injecte la page dans le DOM
  */
 async function changePage(url){

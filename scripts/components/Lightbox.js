@@ -70,6 +70,11 @@ export default class Lightbox {
     `;
   }
 
+  /**
+   * Permet de garder la navigation au clavier (tab et shift+tab) à l'intérieur de la lightBox.
+   * Lorsque le focus est sur le dernier élément de la lightbox, on met le focus sur le premier élément
+   * Lorsque le focus est sur le premier élément de la lightbox et qu'on fait shift+tab, on met le focus sur le dernier élément
+   */
   manageLightboxNav() {
     const  focusableElements = "button, input, textarea, [tabindex]:not([tabindex=\"-1\"])";
     const modal = document.querySelector(".lightbox");

@@ -9,6 +9,11 @@ export default class MediaFactory {
     this.isLiked = false;
   }
 
+  /**
+   * Affiche le template du media contenu dans la classe enfant
+   *
+   * @return  {HTMLElement}  Retourne le HTML correspondant
+   */
   render() {
     return this.mediaTemplate();
   }

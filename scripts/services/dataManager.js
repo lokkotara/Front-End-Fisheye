@@ -16,7 +16,6 @@ async function setDataManagerSource(source) {
     console.error(error);
   }
   if (debug()) console.timeEnd("setDataManagerSource");
-
 }
 
 function getAllPhotographers() {
@@ -35,12 +34,26 @@ function getMedias(id) {
   return media.filter(media => media["photographerId"] === id);
 }
 
+/**
+ * Met à jour le nombre de likes total en cours de navigation
+ *
+ * @param   {Array<object>}  array  Le tableau des médias en cours de navigation
+ *
+ * @return  {Number}         Le total de likes
+ */
 function getUpdateLikes(array) {
   let sum = null;
   array.forEach(media => sum += media["likes"]);
   return sum;
 }
 
+/**
+ * Récupère le nombre total de likes par défaut
+ *
+ * @param   {Number}  id  l'id du photographe
+ *
+ * @return  {Number}      Retourne le nombre total de likes
+ */
 function getTotalLikes(id) {
   const array = getMedias(id);
   let sum = null;

@@ -1,4 +1,5 @@
 import { getAllPhotographers } from "../services/dataManager.js";
+
 export default function pageIndex() {
   createContainer();
   const DOMTarget = document.querySelector(".photographer_section");
