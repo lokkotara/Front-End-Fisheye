@@ -16,10 +16,10 @@ export default class PhotographerFactory {
 
   cardTemplate() {
     return /*html*/`
-      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" role="link" tabindex="0">
+      <article class="photographerCard" onclick="changePage(['photographer', ${this.id}])" tabindex="0">
         <img src="${this.picture}" alt="">
         <h2>${this.name}</h2>
-        <section class="descriptionFieldArea">
+        <div class="descriptionFieldArea">
           <p class="locationField">
             ${this.city}, ${this.country}
           </p>
@@ -29,7 +29,7 @@ export default class PhotographerFactory {
           <data class="priceField" value="${this.price}">
             ${this.price}€/jour
           </data>
-        </section>
+        </div>
       </article>
     `;
   }

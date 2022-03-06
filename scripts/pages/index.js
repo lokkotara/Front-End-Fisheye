@@ -2,7 +2,7 @@ import { getAllPhotographers } from "../services/dataManager.js";
 
 export default function pageIndex() {
   createContainer();
-  const DOMTarget     = document.querySelector(".photographer_section");
+  const DOMTarget     = document.querySelector(".photographerSection");
   let   html          = "";
   const photographers = getAllPhotographers();
   photographers.forEach((photographer) => html += photographer.getCard());
@@ -12,7 +12,7 @@ export default function pageIndex() {
 function createContainer() {
   const main            = document.querySelector("#mainContainer");
   main.innerHTML        = "";
-  const container       = document.createElement("section");
-  container.classList   = "photographer_section";
+  const container       = document.createElement("div");
+  container.classList   = "photographerSection";
   main.appendChild(container);
 }

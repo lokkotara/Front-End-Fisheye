@@ -3,14 +3,14 @@
     margin: 0 100px 0 0;
 }
 
-.photographer_section {
+.photographerSection {
     display              : grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap                  : 70px;
     margin-top           : 100px;
 }
 
-.photographer_section article {
+.photographerSection article {
     display        : flex;
     justify-content: center;
     align-items    : center;
@@ -23,13 +23,13 @@
     cursor         : pointer;
 }
 
-.photographer_section article:focus-visible {
+.photographerSection article:focus-visible {
     outline-offset: 1rem;
     border-radius : 1rem;
     outline       : dashed var(--primary-color);
 }
 
-.photographer_section article a {
+.photographerSection article a {
     justify-self   : center;
     display        : inline-flex;
     justify-content: center;
@@ -38,12 +38,12 @@
     text-decoration: none;
 }
 
-.photographer_section article h2 {
+.photographerSection article h2 {
     color    : var(--secondary-color);
     font-size: 36px;
 }
 
-.photographer_section article img, .photographer_header img {
+.photographerSection article img, .photographer_header img {
     height       : 200px;
     width        : 200px;
     -o-object-fit: cover;
@@ -52,27 +52,27 @@
     transition   : box-shadow 0.2s ease-in-out;
 }
 
-.photographer_section article img:hover {
+.photographerSection article img:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.photographer_section article .descriptionFieldArea {
+.photographerSection article .descriptionFieldArea {
     display        : flex;
     flex-direction : column;
     justify-content: center;
     align-items    : center;
 }
 
-.photographer_section article .locationField {
+.photographerSection article .locationField {
     color    : var(--primary-color);
     font-size: 13px;
 }
 
-.photographer_section article .tagLineField {
+.photographerSection article .tagLineField {
     font-size: 10px;
 }
 
-.photographer_section article .priceField {
+.photographerSection article .priceField {
     color    : var(--darker-color);
     font-size: 9px;
 }
