@@ -25,7 +25,7 @@ export default class Filter {
             <li aria-label="Trier par ${this.orderList[1]}" tabindex="0" role="button" onclick="sortBy('${this.orderList[1]}')">${this.orderList[1]}</li>
             <li aria-label="Trier par ${this.orderList[2]}" tabindex="0" role="button" onclick="sortBy('${this.orderList[2]}')">${this.orderList[2]}</li>
           </ul>
-          <i class="fa fa-chevron-up filterChevron" aria-hidden="true" onclick="toggleFilter()" aria-labelledBy="filterListContainer"></i>
+          <span class="fa fa-chevron-up filterChevron" aria-hidden="true" onclick="toggleFilter()" aria-labelledBy="filterListContainer"></span>
         </div>
       </div>
     `;
@@ -39,7 +39,7 @@ export default class Filter {
           <ul tabindex="0" onclick="toggleFilter()">
             <li>${this.orderList[0]}</li>
           </ul>
-          <i class="fa fa-chevron-down filterChevron" aria-hidden="true"></i>
+          <span class="fa fa-chevron-down filterChevron" aria-hidden="true"></span>
         </div>
       </div>
     `;

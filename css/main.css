@@ -7,26 +7,26 @@
 @import url('./elements/lightbox.css');
 
 :root {
-  --primary-color: #901C1C;
-  --secondary-color: #D3573C;
+  --primary-color      : #901C1C;
+  --secondary-color    : #D3573C;
   --secondary-color-alt: #DB8876;
-  --lighter-color: #FAFAFA; 
-  --darker-color: #525252;
+  --lighter-color      : #FAFAFA;
+  --darker-color       : #525252;
 }
 
 body {
   font-family: "DM Sans", sans-serif;
-  max-width: 1440px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  max-width  : 1440px;
+  margin     : 0 auto;
+  box-sizing : border-box;
 }
 
 #headerContainer {
-  display: flex;
-  flex-direction: row;
+  display        : flex;
+  flex-direction : row;
   justify-content: space-between;
-  align-items: center;
-  height: 90px;
+  align-items    : center;
+  height         : 90px;
 }
 
 p, h2 {
@@ -41,16 +41,16 @@ p, h2 {
   border: 1px solid red!important;
 }
 .noScroll {
-  overflow: hidden;
+  overflow     : hidden;
   padding-right: 1rem;
-  max-width: 1456px;
+  max-width    : 1456px;
 }
 .heartIcon {
-  cursor: pointer;
-  border: none;
+  cursor    : pointer;
+  border    : none;
   background: transparent;
-  color: var(--primary-color);
-  font-size: 1rem;
+  color     : var(--primary-color);
+  font-size : 1rem;
 }
 .heartIcon:focus-visible {
   border-radius: 25%;
@@ -59,13 +59,13 @@ p, h2 {
   font-weight: 900;
 }
 .logo {
-  height: 50px;
+  height     : 50px;
   margin-left: 5rem;
-  cursor: pointer;
+  cursor     : pointer;
 }
 
 .logo:focus-visible {
-  outline: dashed var(--primary-color);
-  outline-offset:  0.5rem;
-  border-radius: 5px;
+  outline       : dashed var(--primary-color);
+  outline-offset: 0.5rem;
+  border-radius : 5px;
 }

@@ -1,49 +1,49 @@
 #headerContainer .logoNavbar {
-    height: 50px;
+    height     : 50px;
     margin-left: 3.5rem;
-    cursor: pointer;
+    cursor     : pointer;
 }
 #headerContainer .logoNavbar:focus-visible {
-    outline: dashed var(--primary-color);
-    outline-offset:  0.5rem;
-    border-radius: 5px;
+    outline       : dashed var(--primary-color);
+    outline-offset: 0.5rem;
+    border-radius : 5px;
 }
 
 #mainContainer .photographer_header {
     background-color: var(--lighter-color);
-    height: 200px;
-    margin: 0 3.5rem;
-    display: flex;
-    justify-content: space-between;    
-    align-items: center;
-    padding: 2rem;
+    height          : 200px;
+    margin          : 0 3.5rem;
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    padding         : 2rem;
 }
 #mainContainer .photographer_header h1 {
-    margin: 0;
-    color: var(--secondary-color);
+    margin   : 0;
+    color    : var(--secondary-color);
     font-size: 4rem;
 }
 #mainContainer .photographer_header .photographerLocation {
-    color: var(--primary-color);
-    font-size: 1.5rem;
+    color        : var(--primary-color);
+    font-size    : 1.5rem;
     margin-bottom: 0.5rem;
 }
 #mainContainer .photographer_header p {
-    color: var(--darker-color);
+    color    : var(--darker-color);
     font-size: 1.1rem;
 }
 
 .infoContainer {
     background-color: var(--secondary-color-alt);
-    position: fixed;
-    bottom: 0;
-    right: 1.5rem;
-    padding: 0.75rem 1rem;
-    width: 13.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
+    position        : fixed;
+    bottom          : 0;
+    right           : 1.5rem;
+    padding         : 0.75rem 1rem;
+    width           : 13.5rem;
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    border-radius   : 5px;
 }
 .noScrollInfos {
     right: 2.5rem!important;

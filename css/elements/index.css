@@ -1,55 +1,55 @@
 #headerContainer h1 {
-    color: var(--primary-color);
+    color : var(--primary-color);
     margin: 0 100px 0 0;
 }
 
 .photographer_section {
-    display: grid;
+    display              : grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+    gap                  : 70px;
+    margin-top           : 100px;
 }
 
 .photographer_section article {
-    display: flex;
+    display        : flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    align-self: center;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin: 0 auto;
-    cursor: pointer;
+    align-items    : center;
+    flex-direction : column;
+    align-self     : center;
+    width          : -webkit-fit-content;
+    width          : -moz-fit-content;
+    width          : fit-content;
+    margin         : 0 auto;
+    cursor         : pointer;
 }
 
 .photographer_section article:focus-visible {
-    outline-offset:  1rem;
-    border-radius: 1rem;
-    outline: dashed var(--primary-color);
+    outline-offset: 1rem;
+    border-radius : 1rem;
+    outline       : dashed var(--primary-color);
 }
 
 .photographer_section article a {
-    justify-self: center;
-    display: inline-flex;
+    justify-self   : center;
+    display        : inline-flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items    : center;
+    flex-direction : column;
     text-decoration: none;
 }
 
 .photographer_section article h2 {
-    color: var(--secondary-color);
+    color    : var(--secondary-color);
     font-size: 36px;
 }
 
 .photographer_section article img, .photographer_header img {
-    height: 200px;
-    width: 200px;
+    height       : 200px;
+    width        : 200px;
     -o-object-fit: cover;
-        object-fit: cover;
+    object-fit   : cover;
     border-radius: 50%;
-    transition: box-shadow 0.2s ease-in-out;
+    transition   : box-shadow 0.2s ease-in-out;
 }
 
 .photographer_section article img:hover {
@@ -57,14 +57,14 @@
 }
 
 .photographer_section article .descriptionFieldArea {
-    display: flex;
-    flex-direction: column;
+    display        : flex;
+    flex-direction : column;
     justify-content: center;
-    align-items: center;
+    align-items    : center;
 }
 
 .photographer_section article .locationField {
-    color: var(--primary-color);
+    color    : var(--primary-color);
     font-size: 13px;
 }
 
@@ -73,11 +73,11 @@
 }
 
 .photographer_section article .priceField {
-    color: var(--darker-color);
+    color    : var(--darker-color);
     font-size: 9px;
 }
 
 .image {
-    display: inline-flex;
+    display       : inline-flex;
     flex-direction: column;
 }
