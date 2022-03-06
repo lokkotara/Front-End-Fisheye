@@ -1,4 +1,3 @@
-const form = document.forms["myform"];
 
 /**
  * Permet de gérer l'ouverture et la fermeture de la modale de contact.
@@ -33,7 +32,7 @@ function templateModal(photographer) {
         </section>
         <p class="modalTitleName">${photographer.name}</p>
       </header>
-      <form name="myform" id="myform" method="dialog" onsubmit="submitForm(event)">
+      <form name="myform" id="myform" method="post" onsubmit="submitForm(event)">
         <div>
           <label for="senderFirstName">Prénom</label>
           <input type="text" name="senderFirstName"id="senderFirstName" pattern="^[a-zA-Z]{1}[a-zA-Z'À-ÿ -]+$" oninput="checkValidityInput(event, 'senderFirstName')" required/>
@@ -51,8 +50,9 @@ function templateModal(photographer) {
 }
 
 function checkValidityInput(e, input) {
+  const form = document.forms["myform"];
   if (!e.target.validity.valid) form.elements[input].classList.add("invalid");
-  if (e.target.validity.valid) form.elements[input].classList.remove("invalid");
+  else form.elements[input].classList.remove("invalid");
 }
 
 export {
