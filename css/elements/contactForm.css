@@ -1,4 +1,4 @@
-.contact_modal {
+.contactModal {
   min-width       : 100%;
   min-height      : 100%;
   overflow        : hidden;
@@ -11,7 +11,7 @@
   margin          : 0;
   padding         : 0;
 }
-.contact_button {
+.contactButton {
   font-size       : 20px;
   font-weight     : bold;
   color           : white;
@@ -36,7 +36,7 @@
   cursor          : pointer;
 }
 
-.contact_button:hover, .contact_button:focus-visible {
+.contactButton:hover, .contactButton:focus-visible {
   background-color: var(--secondary-color-alt);
   color           : black;
   transition      : all 0.2s cubic-bezier(.27,.3,.82,.47);
@@ -47,7 +47,7 @@
   color           : var(--primary-color);
   transition      : all 0.2s cubic-bezier(.27,.3,.82,.47);
 }
-.contact_button:focus-visible, .formButton:focus-visible {
+.contactButton:focus-visible, .formButton:focus-visible {
   outline       : dashed var(--primary-color);
   outline-offset: 2px;
 }

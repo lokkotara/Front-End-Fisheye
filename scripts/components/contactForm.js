@@ -6,7 +6,7 @@
 function toggleModal() {
   const body = document.querySelector("body");
   const infosContainer = document.querySelector(".infoContainer");
-  const modal = document.querySelector(".contact_modal");
+  const modal = document.querySelector(".contactModal");
   const input = document.getElementById("senderFirstName");
   if (!modal.open) {
     modal.showModal();

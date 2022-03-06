@@ -43,7 +43,7 @@
     font-size: 36px;
 }
 
-.photographerSection article img, .photographer_header img {
+.photographerSection article img, .photographerHeader img {
     height       : 200px;
     width        : 200px;
     -o-object-fit: cover;

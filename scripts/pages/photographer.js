@@ -61,14 +61,14 @@ function createContainer() {
 
 function templatePhotographerHTML(photographer) {
   return /*html*/`
-    <section class="photographer_header" aria-label="En-tête de présentation du photographe">
+    <section class="photographerHeader" aria-label="En-tête de présentation du photographe">
       <section class="col">
         <h1>${photographer.name}</h1>
         <h2 class="photographerLocation">${photographer.city}, ${photographer.country}</h2>
         <p>${photographer.tagline}</p>
       </section>
       <section class="col">
-        <button type="button" class="contact_button" onclick="toggleModal()">Contactez-moi</button>
+        <button type="button" class="contactButton" onclick="toggleModal()">Contactez-moi</button>
       </section>
       <section class="col">
         <img src="${photographer.picture}" alt="${photographer.name}">
@@ -77,7 +77,7 @@ function templatePhotographerHTML(photographer) {
     <section class="filterArea">${filter.render()}</section>
     <section class="mediasGallery">${displayMedias()}</section>
     <section class="infoContainer">${templateInfosPhotographer()}</section>
-    <dialog class="contact_modal">${templateModal(photographer)}</dialog>
+    <dialog class="contactModal">${templateModal(photographer)}</dialog>
     <div class="lightbox hidden" tabindex="0">
       <div class="content"></div>
     </div>
@@ -176,7 +176,7 @@ function displayNewTotalLikes(value) {
 
 function submitForm(e) {
   e.preventDefault();
-  const modal = document.querySelector(".contact_modal");
+  const modal = document.querySelector(".contactModal");
   const form = document.forms["myform"];
   const formRequest = {
     recipientName: photographer.name,

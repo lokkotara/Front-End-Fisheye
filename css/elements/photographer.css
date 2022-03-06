@@ -9,7 +9,7 @@
     border-radius : 5px;
 }
 
-#mainContainer .photographer_header {
+#mainContainer .photographerHeader {
     background-color: var(--lighter-color);
     height          : 200px;
     margin          : 0 3.5rem;
@@ -18,17 +18,17 @@
     align-items     : center;
     padding         : 2rem;
 }
-#mainContainer .photographer_header h1 {
+#mainContainer .photographerHeader h1 {
     margin   : 0;
     color    : var(--secondary-color);
     font-size: 4rem;
 }
-#mainContainer .photographer_header .photographerLocation {
+#mainContainer .photographerHeader .photographerLocation {
     color        : var(--primary-color);
     font-size    : 1.5rem;
     margin-bottom: 0.5rem;
 }
-#mainContainer .photographer_header p {
+#mainContainer .photographerHeader p {
     color    : var(--darker-color);
     font-size: 1.1rem;
 }
