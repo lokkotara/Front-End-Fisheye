@@ -27,7 +27,7 @@ function templateModal(photographer) {
         <section class="modalTitleContainer">
           <p>Contactez-moi</p>
           <div>
-            <img src="assets/icons/close.svg" onclick="toggleModal()" class="modalCloseButton" alt="Icone pour fermer la modale" tabindex="0"/>
+            <img src="assets/icons/close.svg" onclick="toggleModal()" class="modalCloseButton" alt="fermer la modale" tabindex="0"/>
           </div>
         </section>
         <p class="modalTitleName">${photographer.name}</p>

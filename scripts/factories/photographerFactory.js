@@ -26,7 +26,7 @@ export default class PhotographerFactory {
           <p class="TagLineField">
             ${this.tagline}
           </p>
-          <data class="priceField" value="${this.price}">
+          <data class="priceField" aria-label="Tarif de ${this.price} euros par jour" value="${this.price}">
             ${this.price}€/jour
           </data>
         </div>

@@ -33,10 +33,10 @@ export default class Filter {
 
   templateClosed() {
     return /*html*/`
-      <div class="filterContainer"  aria-label="Filtre de tri des médias">
+      <div class="filterContainer">
         <p>Trier par</p>
         <div class="filter">
-          <ul tabindex="0" onclick="toggleFilter()">
+          <ul tabindex="0"aria-label="Filtre de tri des médias" onclick="toggleFilter()">
             <li>${this.orderList[0]}</li>
           </ul>
           <span class="fa fa-chevron-down filterChevron" aria-hidden="true"></span>

@@ -37,7 +37,7 @@ export default class Lightbox {
   templatePictureHTML() {
     return /*html*/`
       <div class="colLightbox">
-        <span class="fa-solid fa-chevron-left lightboxIcon" onclick="previous()" tabindex="1"></span>
+        <span class="fa-solid fa-chevron-left lightboxIcon" aria-label="média précédent" onclick="previous()" tabindex="1"></span>
       </div>
       <figure>
         <img src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.image}" alt="${this.currentMedia.altText}">
@@ -46,16 +46,16 @@ export default class Lightbox {
         </figcaption>
       </figure>
       <div class="colLightbox">
-        <span class="fa-solid fa-chevron-right lightboxIcon" onclick="next()" tabindex="1"></span>
+        <span class="fa-solid fa-chevron-right lightboxIcon" aria-label="média suivant" onclick="next()" tabindex="1"></span>
       </div>
-      <span class="fa-solid fa-xmark lightboxIcon lightboxClose"  onclick="closeLightbox()" tabindex="1"></span>
+      <span class="fa-solid fa-xmark lightboxIcon lightboxClose" aria-label="fermer la lightbox" onclick="closeLightbox()" tabindex="1"></span>
     `;
   }
 
   templateVideoHTML() {
     return /*html */`
       <div class="colLightbox">
-        <span class="fa-solid fa-chevron-left navChevron lightboxIcon" onclick="previous()" tabindex="1"></span>
+        <span class="fa-solid fa-chevron-left navChevron lightboxIcon" aria-label="média précédent" onclick="previous()" tabindex="1"></span>
       </div>
       <figure>
         <video id="videoLightbox" src="./assets/images/${this.currentMedia.photographerId}/${this.currentMedia.video}" controls tabindex="1"></video>
@@ -64,9 +64,9 @@ export default class Lightbox {
         </figcaption>
       </figure>
       <div class="colLightbox colLightboxRight">
-        <span class="fa-solid fa-chevron-right lightboxIcon" onclick="next()" tabindex="1"></span>
+        <span class="fa-solid fa-chevron-right lightboxIcon" aria-label="média suivant" onclick="next()" tabindex="1"></span>
       </div>
-      <span class="fa-solid fa-xmark lightboxIcon lightboxClose"  onclick="closeLightbox()" tabindex="1"></span>
+      <span class="fa-solid fa-xmark lightboxIcon lightboxClose" aria-label="fermer la lightbox"  onclick="closeLightbox()" tabindex="1"></span>
     `;
   }
 

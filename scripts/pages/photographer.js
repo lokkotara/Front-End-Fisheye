@@ -61,7 +61,7 @@ function createContainer() {
 
 function templatePhotographerHTML(photographer) {
   return /*html*/`
-    <section class="photographerHeader" aria-label="En-tête de présentation du photographe">
+    <section class="photographerHeader">
       <section class="col">
         <h1>${photographer.name}</h1>
         <h2 class="photographerLocation">${photographer.city}, ${photographer.country}</h2>

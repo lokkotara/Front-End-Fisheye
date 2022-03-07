@@ -9,7 +9,7 @@ export class MediaPicture extends MediaFactory {
 
   mediaTemplate() {
     return /*html*/`
-    <article tabindex="0" class="mediaCard" onclick="showLightbox(${this.id})">
+    <article tabindex="0" aria-label="agrandir le média" class="mediaCard" onclick="showLightbox(${this.id})">
       <figure>
         <img src="./assets/images/${this.photographerId}/${this.image}" alt="${this.altText}" class="mediaImage">
         <figcaption>
