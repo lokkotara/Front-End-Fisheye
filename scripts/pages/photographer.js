@@ -225,7 +225,6 @@ function closeLightbox(DOMTarget) {
  *
  */
 function manageLightboxNav(DOMTarget) {
-  console.log( DOMTarget);
   document.onkeydown = e => {
     switch (e.key) {
       case "ArrowLeft":
