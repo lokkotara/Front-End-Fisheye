@@ -15,4 +15,4 @@ Construire un prototype fonctionnel pour le site web FishEye afin de le rendre d
 
 Il n'y a aucune installation. 
 - Il vous suffit d'ouvrir le site à l'aide d'un serveur de développement local (comme Live Server par exemple) pour une utilisation en local.
-- Vous pouvez aussi consulter la version déployée sur Github Pages en suivant [ce lien](https://github.com/lokkotara/GregoryFlorand_6_28012022)
+- Vous pouvez aussi consulter la version déployée sur Github Pages en suivant [ce lien](https://lokkotara.github.io/GregoryFlorand_6_28012022/)
